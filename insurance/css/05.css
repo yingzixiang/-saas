@@ -1,0 +1,191 @@
+body{
+	background:#999999 url(../img/run01/01_02.png) no-repeat;
+	background-size:100%;
+	overflow: hidden;
+}
+*{
+	color: #686868;
+	font-size: 4vw;
+}
+.Welcome{
+	font-size: 5vw;
+	color:#FFFEFF;
+	height:6.5%;
+	font-weight: bold;
+	padding-left:8%;
+	padding-top:2%;
+}
+.Welcome b{
+	font-size: 6vw;
+	color:#FF0048;
+	font-weight: bold;
+}
+#IsGroup{
+	height: 100%;
+	min-height: 568px;
+	width: 92%;
+	margin:0 auto;
+	background-color: #FFFEFF;
+	border-radius: 3px;
+	padding: 5%;
+}
+#IsGroupS{
+	height: 60%;
+}
+
+#IsGroupS p{
+	height: 10%;
+	border:1px solid #ddd;
+	border-radius: 3px;
+	margin-top:4%;
+	padding:2% 5px;
+	background:linear-gradient(to bottom,#eee 0%,#fff 100%);
+}
+#IsGroupS p:first-child{
+	border: none;
+	font-size: 4vw;
+	padding: 0;margin: 0;
+	height: 5%;
+	background:none;
+}
+#IsGroupS p i{
+	font-size: 4vw;
+	color:#C8C8C8;
+}
+#IsGroupS p span{
+	float: right;
+	color:#FF0048;
+	font-size: 3vw;
+	margin-top:3%;
+}
+#IsGroupCheck{
+	height:40%;
+}
+#IsGroupCheck button{
+	width:100%;
+	height: 20%;
+	border: 1px solid #ddd;
+	background:linear-gradient(to bottom,#FD885E 0%,#F25F6E 100%);
+	margin:3% auto;
+	border-radius: 3px;
+}
+#IsGroupCheck button:first-child{
+	height:15%;
+	background: #FFFEFF;
+}
+.UploadPhotos{
+	height:30%;
+	margin-top:5%;;
+}
+.UploadPhotos span{
+	display: inline-block;
+	background:#FFFEFF;
+	background-size:100% ;
+	border: dashed 1px #DDDDDD;
+	width: 50px;
+	height:50px;
+	margin-right: 10px;
+	position: relative;
+}
+.UploadPhotos span img{
+	width:50px;
+	height:50px;
+}
+.UploadPhotos span img.imgOK{
+	width:20px;
+	height: 20px;
+	position: absolute;
+	left:30px;
+	top:30px;
+	opacity: 0.8;
+}
+/*创建成功*/
+.modal{
+	position: absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	height:100%;
+	background:rgba(0,0,0,0.5);
+}
+.modal-dialog{
+	height: 100%;
+	padding: 0 5%;
+}
+.modal-content {
+	height:35%;
+}
+.modal-content div{
+	height:60%;
+}
+.modal-content>p{
+	height: 30%;
+}
+.modal-content div,.modal-content>p{
+	background: #fff;
+	border-radius: 10px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.modal-content div>p{
+	height: 50%;
+	line-height: 100%;
+}
+.modal-content div>p:first-child{
+	border-bottom: 1px solid #ddd;
+}
+.modal-content p{
+	color:#027BFF;
+	font-size: 5vw;
+	font-weight: 750;
+	padding-top:8%;
+}
+.GroupSucc{
+	width:70%;
+	margin-left: 15%;
+	border-radius:10px;
+	margin-top:70%;
+}
+.GroupSucc div{
+	border-bottom:1px solid #ddd;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	padding-top:10%;
+}
+.GroupSucc div p{
+	margin:0;
+	padding: 0;
+	height:30%;
+	margin-top:5px;
+	border: none;
+	font-size: 4vw;
+	color:#000;
+}
+.GroupSucc>p{
+	margin:0;
+	padding: 0;
+	padding-top:5% ;
+	
+}
+.GroupSucc>p a{
+	color:#007AFF;
+	text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

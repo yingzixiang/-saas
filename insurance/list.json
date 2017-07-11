@@ -1,0 +1,31 @@
+{
+	"button": [
+		{
+			"name": "活动广场",
+			"sub_button": [
+				{
+					"type": "view",
+					"name": "日常活动",
+					"url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx43a5260d8a990000&redirect_uri=http%3A%2F%2Fxb.guegg.com%2Frunningindex%2F21.html&response_type=code&scope=snsapi_userinfo&state=state#wechat_redirect"
+				},{
+					"type": "view",
+					"name": "伦敦马拉松",
+					"url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx43a5260d8a990000&redirect_uri=http%3A%2F%2Fxb.guegg.com%2Frunningindex%2Factivity1.html&response_type=code&scope=snsapi_userinfo&state=state#wechat_redirect"
+				}
+			]
+		}, {
+			"name": "精彩福利",
+			"sub_button": [
+				 {
+					"type": "view",
+					"name": "团购",
+					"url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx43a5260d8a990000&redirect_uri=http%3A%2F%2Fxb.guegg.com%2Frunningindex%2Fmarket.html&response_type=code&scope=snsapi_userinfo&state=state#wechat_redirect"
+				}
+			]
+		}, {
+			"type": "view",
+			"name": "我的",
+			"url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx43a5260d8a990000&redirect_uri=http%3A%2F%2Fxb.guegg.com%2Frunningindex%2F33.html&response_type=code&scope=snsapi_userinfo&state=state#wechat_redirect"
+		}
+	]
+}

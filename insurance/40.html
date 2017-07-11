@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<script src="js/jquery-2.2.4.js"></script>
+		<link rel="stylesheet" type="text/css" href="js/weui/lib/weui.css" />
+		<link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+		<script src="js/weui/js/jquery-weui.js"></script>
+		<title>团队详情</title>
+		<style>
+			.bg_seeTea {
+				width: 100%;
+				background: url(img/images/043_02.jpg) no-repeat;
+				background-size: 100% 100%;
+				position: relative;
+			}
+			
+			.my_list {
+				padding: 0 15px;
+				margin-bottom: 5px;
+			}
+			
+			.my_list span {
+				color: #989898;
+				display: inline-block;
+				vertical-align: super;
+				line-height: 35px;
+				margin: auto 15px;
+			}
+			
+			.line {
+				height: 1px;
+				width: 100%;
+				background: linear-gradient(to left, rgba(152, 152, 152, 0) 0%, #989898 50%, rgba(152, 152, 152, 0) 100%);
+			}
+			
+			.my_list div {
+				display: inline-block;
+				height: 25px;
+				margin: 5px auto;
+			}
+			
+			.my_list div img {
+				height: 100%;
+			}
+			
+			.main {
+				margin-top: 2em;
+			}
+			
+			.logo_img {
+				text-align: center;
+				margin: 0 auto;
+			}
+			
+			.logo_img img {
+				width: 5em;
+				height: 5em;
+				margin-top: 2em;
+				border-radius: 3px;
+				overflow: hidden;
+			}
+			
+			.rungrounp_name,
+			.btn,
+			h4 {
+				text-align: center;
+			}
+			
+			.rungrounp_name {
+				font-size: 1.8em;
+				font-weight: bold;
+				color: #f8f8f8
+			}
+			
+			h4 {
+				font-style: italic;
+				color: #5b3608
+			}
+			
+			.btn {
+				position: relative;
+				top: 1.2em;
+				height: 2.5em;
+				width: 90%;
+				margin-left: 5%;
+				outline: auto;
+				background: linear-gradient(to bottom, #FD885E 0%, #F25F6E 100%);
+				border: 1px solid #fd7382;
+				color: #df4555;
+			}
+			
+			.level {
+				margin-left: 10px !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bg_seeTea">
+			<div class="logo_img">
+				<img src="paotuan/img/p14.png" alt="团队logo" />
+			</div>
+			<h1 class="rungrounp_name"></h1>
+			<h4>Running is not alone</h4>
+			<button class="btn" onclick="partIn(memberId,groupId)">加入团队</button>
+		</div>
+		<ul class="main">
+			<li class="my_list">
+				<div><img src="img/images/043_05.png" /></div>
+				<span class="groupName"></span>
+			</li>
+			<li class="line"></li>
+			<li class="my_list">
+				<div><img src="img/images/043_09.png" /></div>
+				<div class="level"><img src="img/indexme/030_03.png" alt="" /></div>
+			</li>
+			<li class="line"></li>
+			<li class="my_list">
+				<div><img src="img/images/043_11.png" /></div>
+				<span class="idress"></span>
+			</li>
+			<li class="line"></li>
+			<li class="my_list">
+				<div><img src="img/images/043_13.png" /></div>
+				<span class="member"></span>
+			</li>
+			<li class="line"></li>
+			<li class="my_list">
+				<div><img src="img/images/043_15.png" /></div>
+				<span class="introduce"></span>
+			</li>
+		</ul>
+	</body>
+	<script>
+		var groupId = window.location.href.split(/groupId=/)[1].split(/&/)[0];
+		var memberId = window.sessionStorage.getItem("memberId");
+		$.ajax({
+			type: "get",
+			url: "http://www.izerosoft.com.cn/group/groupDetail",
+			data: {
+				groupId: groupId
+			},
+			async: true,
+			success: function(obj) {
+				console.log(obj);
+				if(obj.result == 1) {
+					$(".groupName").html(obj.myGroup.groupApplicantsname);
+					$(".logo_img img").attr("src", obj.myGroup.groupLogo);
+					$(".rungrounp_name").html(obj.myGroup.groupGroupname);
+					$(".idress").html(obj.myGroup.groupCity);
+					$(".member").html(obj.groupNum);
+					$(".introduce").html(obj.myGroup.groupIntroduce);
+				} else if(obj.result == 0) {
+					alert("暂无此团队信息！");
+				}
+			},
+			error: function() {
+				$.toast("网路错误", "cancel");
+			}
+		});
+
+		/*加入团队*/
+		function partIn(memberId, groupId) {
+			$.ajax({
+					type: "post",
+					url: "http://www.izerosoft.com.cn/group/joinGroup",
+					data: {
+						memberId: memberId,
+						groupId: groupId
+					},
+					async: true,
+					success: function(obj) {
+						if(obj.result == 1) {
+							$.toast("加入成功");
+							setTimeout(function() {
+								window.location.href = "34.html?id=" + groupId;
+							}, 1000);
+
+						}else if(obj.result == 0) {
+							$.toast("加入失败", "cancel");
+						}else{
+							$.toast("您只能加入一个团队", "cancel");
+						}
+					},
+					error: function() {
+						alert("网络出错！");
+					}
+				});
+			}
+			
+	</script>
+
+</html>

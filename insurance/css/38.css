@@ -1,0 +1,125 @@
+.weui_search_bar {
+	background: none;
+	padding: 0;
+	position: fixed;
+	width: 94%;
+	margin: 0 auto;
+	box-shadow: 1px 1px 1px #686868;
+	overflow: hidden;
+	border-radius: 5px;
+	left: 3%;
+	top: 5px;
+}
+
+.weui_search_text {
+	background: linear-gradient(to top, #f8f8f8 0%, #e8e8e8 100%);
+	width: 100%;
+}
+
+.weui_search_inner {
+	background: linear-gradient(to top, #f8f8f8 0%, #e8e8e8 100%);
+}
+
+.weui_search_cancel {
+	color: #383838
+}
+
+.weui_search_input {
+	color: #383838
+}
+
+#MyPaotuanList {
+	height: 80%;
+	margin-top: 0%;
+	;
+}
+
+#MyPaotuanList li {
+	width: 100%;
+	height: 65px;
+	position: relative;
+	background: linear-gradient(to bottom, #f8f8f8 0%, #e8e8e8 100%);
+	border-bottom: 1px solid #C8C8C8;
+	margin-bottom: 10px;
+}
+
+.myrungrouplist {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+*{
+	color:#686868;
+}
+.myrungrouplist:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.myrungrouplist>p {
+	width: 14%;
+	float: left;
+	margin: 10px 4%;
+	height: 45px;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.myrungrouplist>p>img {
+	width: 100%;
+	height: 100%;
+}
+
+.myrungrouplist div {
+	width: 50%;
+	float: left;
+	height: 80%;
+}
+
+.myrungrouplist div>p {
+	font-size: 3.2vw;
+	height: 10%;
+	margin-top: 7%;
+}
+
+.myrungrouplist div>p>span {
+	font-size: 3.2vw;
+}
+
+.myrungrouplist>a {
+	width: 24%;
+	margin-left: 1%;
+	float: left;
+	line-height: 30px;
+	margin-top: 4.2%;
+	border-radius: 5px;
+	text-decoration: none;
+	border: 1px solid #C8C8C8;
+	text-align: center;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.myrungrouplist>a:hover {
+	background: #000000;
+	opacity: 0.1;
+}
+
+#MyPaotuanList>li>img {
+	width: 100%;
+}
+
+.result {
+	margin: 45px auto 10px 10px;
+	color: #868686;
+	font-size: 14px;
+}
+
+#resultNo {}
+
+#resultNo img {
+	width: 100%;
+}

@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/34.css" />
+		<script src="js/jquery-2.2.4.js"></script>
+		<script src="js/touch-0.2.14.min.js"></script>
+		<script src="js/weui/js/jquery-weui.js"></script>
+		<title>团队管理</title>
+	</head>
+
+	<body>
+		<div id="Event">
+			<p id="ChuangjianTitle"><img src="img/run33/34_02.png" alt="" /></p>
+			<div id="MyPaotuanNo">
+				<img src="img/run33/34_03.png" alt="" />
+				<a class="btn">创建团队</a>
+			</div>
+			<ul id="MyPaotuanList" class="active">
+				<li>
+					<div class="myrungrouplist">
+						<p><img src="img/run01/01_02.png" alt="" /></p>
+						<div>
+							<p>小巴团队</p>
+							<p>所在地：<span>杭州</span>   &nbsp;&nbsp;成员：<span>99</span></p>
+						</div>
+						<button>管理团队</button>
+					</div>
+				</li>
+				<li>
+					<div class="myrungrouplist">
+						<p><img src="img/run01/01_02.png" alt="" /></p>
+						<div>
+							<p>小巴团队</p>
+							<p>所在地：<span>杭州</span>   &nbsp;&nbsp;成员：<span>99</span></p>
+						</div>
+						<button>管理团队</button>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div id="details" class="active">
+			<h1></h1>
+			<p class="nolone"><img src="img/images/039_01.png" alt="" /></p>
+			<ul>
+				<li style="height: 66px;">
+					<div class="logo" style="margin-right: 0px;">
+						<img style="width: 46px;height:46px;margin: 0;" src="paotuan/img/p14.png" alt="" />
+					</div>
+					<p class="level">
+						<img src="img/images/039_03.png" alt="" />
+						<span></span>
+					</p>
+				</li>
+				<li><img src="img/images/039_07.png" alt="" /></li>
+				<li><img src="img/images/039_09.png" /></li>
+				<li style="height:auto;word-wrap: break-word;padding: 0 15px;">
+					<img style="margin: 14px 20px 14px 0px;" src="img/images/039_12.png" alt="" />
+
+				</li>
+				<li><img src="img/images/039_14.png" alt="" /></li>
+			</ul>
+			<p style="display:none">退出团队</a>
+			</p>
+		</div>
+		</div>
+	</body>
+	<script>
+		$(".btn").attr("href", "01.html?code=" + sessionStorage.getItem("code"));
+		//创建的团队
+		var memberId = sessionStorage.getItem("memberId");
+		$.ajax({
+			url: 'http://www.izerosoft.com.cn/group/myGroupList',
+			type: 'get',
+			data: {
+				memberId: memberId,
+				type: 1
+			},
+			success: function(obj) {
+				console.log(obj);
+				if(obj.result == 0) {
+					$("#MyPaotuanNo").show();
+				} else {
+					$("#MyPaotuanNo").hide();
+					$("#MyPaotuanList").show();
+					$("#MyPaotuanList").html("");
+					for(var i = 0, MyPaotuanList = ""; i < obj.personalList.length; i++) {
+						MyPaotuanList += "<li><div class='myrungrouplist'>" +
+							"<p><img src='" +
+							obj.personalList[i].groupLogo +
+							"'/></p><div><p>" +
+							obj.personalList[i].groupGroupname +
+							"</p><p>所在地：<span>" +
+							obj.personalList[i].groupCity +
+							"</span>   &nbsp;&nbsp;成员：<span>" +
+							obj.groupNum[i] +
+							"</span></p></div><button alt='" + obj.personalList[i].groupId + "'>管理团队</button></div></li>";
+						//$($(".myrungrouplist>button")[i]).attr("onclick","javascript:window.location.href='42.html?groupId="+obj.groupList[i].groupId+"')";
+					}
+					$("#MyPaotuanList").html(MyPaotuanList);
+					$(".myrungrouplist button").click(function() {
+						var i = $(this).index();
+						window.location.href = "42.html?groupId=" + $(this).attr("alt");
+					});
+				}
+			}
+		});
+	</script>
+
+</html>

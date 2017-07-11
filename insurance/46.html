@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+        <link rel="stylesheet" href="css/common.css" />
+        <script src="js/jquery-2.2.4.js"></script>
+		 <link rel="stylesheet" type="text/css" href="js/weui/lib/weui.css"/>
+        <script src="js/weui/js/jquery-weui.js"></script>
+        <link rel="stylesheet" href="css/46.css" />
+	<title>成员管理</title>
+	</head>
+	<body>
+		<div style="display: none;" class="weui_search_bar" id="search_bar">
+		  	<form class="weui_search_outer">
+		    <div class="weui_search_inner">
+			    <i class="weui_icon_search"></i>
+			    <input type="search" class="weui_search_input" id="search_input" placeholder="输入团员昵称或ID" required/>
+			    <a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
+		  	</div>
+		  	<label for="search_input" class="weui_search_text" id="search_text">
+			  	<i class="weui_icon_search"></i>
+			   	<span>查找团员</span>
+		   	</label>
+		 	</form>
+		  	<!--a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a-->
+		</div>
+		<h1></h1>
+		<p class="resultlogo active">搜索的结果：</p>
+		<ul id="NumberList">
+			<!--li>
+				<b><img src="img/run01/01_02.png" alt="" /></b>
+				<span>小小巴</span> 
+				<a class="active" href="50.html?PostInfor=groupId"></a> 
+				<a></a>
+			</li-->	
+			
+		</ul>
+		<img class="nonumber active" src="img/run33/55_02.png" alt="" />
+		<a style="display:none" class="setinfor" href="52.html?PostGroup=89789"><img src="img/run33/46_05.png" alt="" /></a>
+		<div class="modal active modalDelete">
+		  	<div class="modal-dialog">
+		  		<div class=" leave">
+			  		<div>
+			  			<p class="runmember">确定删除团友“<span></span>”吗？</p>
+			  			<a onclick="(function(){$('.modal').hide()})()"></a>
+			  			<a class="Isdelete"></a>
+			  		</div>
+		  		</div>	
+			</div>
+		</div>
+		<!--div class="modal active infor">
+		  	<div class="modal-dialog">
+		  		<div class="memberinfor">
+			  		<ul>
+			  			<li><img src="img/run14/14_02.png" alt="" /></li>
+			  			<li class="memphoto"> 
+			  				<p><img src="img/run01/01_02.png" alt="" /></p>
+			  			</li>
+			  		</ul>
+			  		<div class="nameinfor">
+			  			<p></p>
+			  			<p>初入职场</p>
+			  		</div>
+			  		<p><input type="text" disabled value=""/></p>
+			  		<span onclick="(function(){$('.modal').hide()})()"><img src="img/run60/77_03.png" alt="" /></span>
+		  		</div>	
+			</div>
+		</div-->
+		<div class="modal_1 infor_1 active">
+		  	<div class="modal-dialog_1">
+		  		<div class="memberinfor_1">
+			  		<ul>
+			  			<li style="font-family:'迷你简汉真广标';line-height:40px;color:#383838;font-size:16px;font-weight: bold;">用户信息：</li>
+			  			<li class="lineChange"></li>
+			  			<li class="lilist">
+			  				<img src="img/images/060_03.png" alt="" />
+			  				<p>昵 称：<span></span></p>
+			  			</li>
+			  			<li class="lineChange"></li>
+			  			<li class="lilist">
+			  				<img src="img/images/060_06.png" alt="" />
+			  				<p>电 话：<span></span></p>
+			  			</li>
+			  			<li class="lineChange"></li>
+			  			<li class="lilist">
+			  				<img src="img/images/060_09.png" alt="" />
+			  				<p>加入时间：<span></span></p>
+			  			</li>
+			  			<li class="lineChange"></li>
+			  			<li id="chose"><img onclick="(function(){$('.modal_1').hide()})()" src="img/run60/79_09.png" alt="" /></li>
+			  		</ul>
+		  		</div>	
+			</div>
+		</div>
+	</body>
+	<script>
+		
+		/*关键字查询*/
+		$("#search_input").keyup(function(){
+			var keyWords=$(this).val();
+			$("body")[0].style.background="#313131";	
+			$("h1").remove();$(".setinfor").remove();
+			$("#NumberList")[0].style.marginTop="0%";
+			$(".resultlogo").show();
+			$("#NumberList").html("");
+			$.ajax({
+				type:"get",
+				url:"http://www.izerosoft.com.cn/running/activity/searchActivityList",
+				data:{
+					keyWords:keyWords,
+					pageNo:1
+				},
+				async:true,
+				success:function(obj){
+
+				}
+			});
+		});
+		$(function(){
+			var groupId=window.location.href.split(/groupId=/)[1].split(/&/)[0];
+			$.ajax({
+				type:"get",
+				url:"http://www.izerosoft.com.cn/group/groupMemList?groupId="+groupId,/*团队内的成员列表*/
+				async:true,
+				success:function(res){
+					console.log(res);
+					for(var i=0;i<res.list.length;i++){
+						$("#NumberList").append("<li><b><img src='"
+							+res.list[i].memberPhoto+
+							"'/></b><span>"
+							+res.list[i].memberName+
+							"</span><a class='active' href='50.html?PostInfor=groupId'></a><a></a></li>"
+						);
+						$("#NumberList li a:last-child").attr("alt",res.list[i].memberId);
+						$($("#NumberList li")[i]).attr("alt",res.list[i].memberId);
+					}
+					DeleteRunMem(res);
+				}
+			});
+			$.ajax({
+				type:"get",
+				url:"http://www.izerosoft.com.cn/group/groupDetail",/*团队详情查找团队名称加入表头*/
+				data:{
+					groupId:groupId
+				},
+				async:true,
+				success:function(obj){
+					$("h1").html(obj.myGroup.groupGroupname);
+				}
+			});
+		});
+		
+		$(".Isdelete").click(function(){
+			var groupId=window.location.href.split(/groupId=/)[1].split(/&/)[0];
+			$.ajax({
+				
+				type:"get",
+				
+				url:"http://www.izerosoft.com.cn/group/deteleMem",
+				data:{
+					groupId:groupId,
+					memberId:$(this).attr("alt")
+				},
+				
+				async:true,
+				success:function(res){
+				 	 console.log(res);
+					$("#NumberList li")[NumberIndex].remove();
+					$(".modal").hide();
+				}
+			});
+			
+		});
+	function DeleteRunMem(res){
+		$("#NumberList li a:last-child").click(function(){
+			$(".modalDelete").show();
+			NumberIndex=$(this).parent("li").index();
+			$(".Isdelete").attr("alt",$(this).attr("alt"));
+			$(".runmember span").html($(this).siblings("span").html());
+			return false;
+		});
+		$("#NumberList li").click(function(){
+			$(".infor_1").show();
+			var i=$(this).index();
+			var newTime=new Date(res.list[i].memberJoindate);
+							newTime=newTime.getFullYear()+"年"+
+							(newTime.getMonth()+1)+"月"+
+							newTime.getDate()+"日";
+			$('.lilist:eq(0) p span').html(res.list[i].memberName);
+			$('.lilist:eq(1) p span').html(res.list[i].memberMobile);
+			$('.lilist:eq(2) p span').html(newTime);
+			/*var memberId=sessionStorage.getItem("memberId");
+			
+			$.ajax({
+				type:"get",
+				url:"http://www.izerosoft.com.cn/member/detail",
+				data:{
+					openid:sessionStorage.getItem("openid"),
+					memberId:$(this).attr("alt")
+				},
+				async:true,
+				success:function(obj){
+					console.log(obj);
+					$(".memphoto p>img").attr("src",obj.img);
+					$(".nameinfor p:eq(0)").html(obj.nickname);
+				},
+				error:function(){
+					
+				}
+			});
+			$.ajax({
+				url:'http://www.izerosoft.com.cn/group/myGroupList',
+				type:'get',
+				data:{
+					memberId:memberId,
+					type:0
+				},
+				success:function(obj){
+					groupId=obj.groupList[0].groupId;
+					$.ajax({
+						type:"get",
+						url:"http://www.izerosoft.com.cn/group/groupDetail",
+						data:{
+							groupId:groupId
+						},
+						async:true,
+						success:function(obj){
+							console.log(obj);
+							if(obj.result==1){
+								$(".memberinfor ul li>img").attr("src",obj.myGroup.groupLogo);
+								$(".memberinfor p input").val(obj.myGroup.groupGroupname);	
+							}else if(obj.result==0){
+								
+							}
+						}
+					});
+				}	
+			});	*/				
+		});		
+	}	
+	</script>
+</html>

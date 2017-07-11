@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/21.css" />
+		<script src="js/jquery-2.2.4.js"></script>
+		<link rel="stylesheet" type="text/css" href="js/weui/lib/weui.css" />
+		<script src="js/weui/js/jquery-weui.js"></script>
+		<title>活动广场</title>
+	</head>
+	<style>
+		.weui_search_bar {
+			width: 94%;
+			background: none;
+			padding: 0;
+			margin: 0 auto;
+			box-shadow: 1px 1px 1px #686868;
+			overflow: hidden;
+			border-radius: 3px;
+			top: 5px;
+		}
+		.weui_search_text {
+			background: linear-gradient(to top, #f8f8f8 0%, #e8e8e8 100%);
+			width: 100%;
+		}
+		
+		.weui_search_inner {
+			background: linear-gradient(to top, #f8f8f8 0%, #e8e8e8 100%);
+		}
+		
+		.weui_search_cancel {
+			color: #383838
+		}
+		
+		.weui_search_input {
+			color: #383838
+		}
+	</style>
+
+	<body>
+
+		<div class="weui_search_bar" id="search_bar">
+			<form class="weui_search_outer">
+				<div class="weui_search_inner">
+					<i class="weui_icon_search"></i>
+					<input type="search" class="weui_search_input" id="search_input" placeholder="搜索" required/>
+					<a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
+				</div>
+				<label for="search_input" class="weui_search_text" id="search_text">
+		      <i class="weui_icon_search"></i>
+		      <span>搜索你想要参加的活动</span>
+		    </label>
+			</form>
+			<!--a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a-->
+		</div>
+
+		<ul id="Event">
+			<!--li>
+				<p>
+					<img src="img/run14/14_02.jpg" />
+					<img src="img/run14/14_05.png"/>
+				</p>
+				<p>
+					<span>【浙大户外徒步团】助力杭州10.29毅行大会</span>
+					<span class="CountDown">
+						还剩：<span>99</span>天
+							<span>99</span>小时<span>99</span>分
+					</span>
+				</p>
+			</li>
+			<li>
+				<p>
+					<img src="img/run14/14_02.png" />
+					<img src="img/run14/14_05.png"/>
+				</p>
+				<p>
+					<span>2016泥泞跑第三站上海站报名</span>
+					<span>
+						还剩：<span>99</span>天
+							<span>99</span>：<span>99</span>
+					</span>
+				</p>
+			</li-->
+		</ul>
+
+		<script>
+			function CountDown(endTime) {
+				var nowTime = new Date();
+				var deltaT = endTime - nowTime.getTime();
+				if(deltaT > 0) {
+					//计算出相差天数
+					var days = Math.floor(deltaT / (24 * 3600 * 1000));
+					//计算出小时数
+					var leave1 = deltaT % (24 * 3600 * 1000); //计算天数后剩余的毫秒数
+					var hours = Math.floor(leave1 / (3600 * 1000));
+					//计算相差分钟数
+					var leave2 = leave1 % (3600 * 1000); //计算小时数后剩余的毫秒数
+					var minutes = Math.floor(leave2 / (60 * 1000));
+					//计算相差秒数
+					var leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
+					var seconds = Math.round(leave3 / 1000);
+					return "还剩：<span>" + days + "</span> 天<span>" + hours + "</span>小时<span>" + minutes + "</span> 分";
+				} else {
+					return "已完成";
+				}
+			}
+			$(function() {
+				$.ajax({
+					url: 'http://www.izerosoft.com.cn/activity/activityList?type=0',
+					type: 'get',
+					success: function(res) {
+						console.log(res);
+						if(res.result == 1) {
+							for(var i = res.activityList.length - 1; i >= 0; i--) {
+								$("#Event").append(
+									"<li alt='" + res.activityList[i].activityId + "'><p><img src='" +
+									res.activityList[i].activityLogo.split(/,/)[0] +
+									"' alt='活动宣传图片'/><img src='img/run14/14_05.png'/></p><p><span>" +
+									res.activityList[i].activityName +
+									"</span><span class='CountDown'>" +
+									CountDown(res.activityList[i].endTime) +
+									"</span></p></li>"
+								);
+							}
+							$("#Event li").click(function() {
+								window.location.href = 'detail.html?activityId=' + $(this).attr("alt");
+							});
+						} else {
+
+						}
+					}
+				});
+			});
+
+			$("#search_input").keyup(function() {
+				var keyWords = $(this).val();
+				console.log(keyWords);
+				search_activity(keyWords);
+			});
+
+			function search_activity(keyWords) {
+				$.ajax({
+					type: "get",
+					url: "http://www.izerosoft.com.cn/activity/searchActivityList",
+					data: {
+						keyWords: keyWords
+					},
+					async: true,
+					success: function(res) {
+						$("#HotRun").remove();
+						if(res.result == 0) {
+							$("#Event").html("<img src='img/run14/images/26_03.png'/>");
+							$("#Event img").css("width", "100%");
+						} else if(res.result == 1) {
+							$("#Event").html("");
+							for(var i = res.activitieList.length - 1; i >= 0; i--) {
+								$("#Event").append(
+									"<li alt='" + res.activitieList[i].activityId + "'><p><img src='" +
+									res.activitieList[i].activityLogo.split(/,/)[0] +
+									"' alt='活动宣传图片'/><img src='img/run14/14_05.png'/></p><p><span>" +
+									res.activitieList[i].activityName +
+									"</span><span class='CountDown'>" +
+									CountDown(res.activitieList[i].endTime) +
+									"</span></p></li>"
+								);
+							}
+							$("#Event li").click(function() {
+								window.location.href = 'detail.html?activityId=' + $(this).attr("alt");
+							});
+						}
+					},
+					error: function() {
+						alert("网络连接失败");
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

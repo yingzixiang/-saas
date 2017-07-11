@@ -1,0 +1,158 @@
+/*头部图片信息*/
+header {
+	position: relative;
+	color: #383838;
+}
+
+.myBg> img {
+	width: 100%;
+	display: block;
+}
+
+.my1,
+.my2,
+.my3,
+.my4,
+.my5 {
+	position: absolute;
+}
+
+.my1 {
+	top: 13%;
+	left: 6%;
+}
+
+.my2 {
+	width: 9rem;
+	height: 1.8rem;
+	background: url('../img/star.png') no-repeat center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	top: 15%;
+	right: 15%;
+}
+
+.my3 {
+	width: 6rem;
+	height: 6rem;
+	background: url('../img/my.png') no-repeat center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	top: 30%;
+	left: 5%;
+}
+
+.my4 {
+	bottom: 20%;
+	right: 30%;
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+.my4>p:first-child {
+	margin-bottom: 10%;
+}
+
+.my5 {
+	width: 3rem;
+	height: 3rem;
+	background: url('../img/myNews.png') no-repeat center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	bottom: 30%;
+	right: 5%;
+}
+/*主体目录和文字内容*/
+section {
+	font-size: 1.2rem;
+}
+
+section ul {
+	margin-left: 0.8rem;
+	margin-right: 0.8rem;
+	padding-top: 1rem;
+}
+
+section>ul>li {
+	margin-bottom: 5%;
+	text-align: center;
+	position: relative;
+}
+
+section>ul>li>a {
+	display: inline-block;
+}
+
+section>ul>li>a b {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 5%;
+	top: 9px;
+}
+
+section ul> li:first-child b {
+	background: url('../img/myItem.png') no-repeat 0 0;
+}
+
+section ul> li:nth-child(2) b {
+	background: url('../img/myItem.png') no-repeat 0 -83px;
+}
+
+section ul> li:nth-child(3) b {
+	background: url('../img/myItem.png') no-repeat 0 -169px;
+}
+
+section ul> li:nth-child(4) b {
+	background: url('../img/myItem.png') no-repeat 0 -251px;
+}
+
+section ul> li:nth-child(5) b {
+	background: url('../img/myItem.png') no-repeat 0 -345px;
+	top: 2px;
+}
+
+section ul> li:last-child b {
+	background: url('../img/myItem.png') no-repeat 0 -406px;
+	top: 2px;
+}
+
+section ul> li:first-child b,
+section ul> li:nth-child(2) b,
+section ul> li:nth-child(3) b,
+section ul> li:nth-child(4) b,
+section ul> li:nth-child(5) b,
+section ul> li:last-child b {
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+
+section .item {
+	display: inline-block;
+	height: 60px;
+}
+
+section .item p {
+	font-size: 0.8rem;
+	font-style: oblique;
+}
+
+section>p {
+	text-align: center;
+	height: 60px;
+	line-height: 60px;
+}
+
+.sign {
+	display: inline-block;
+	width: 4rem;
+	height: 2rem;
+	background: url('../img/myData.png') no-repeat center;
+	-webkit-background-size: cover;
+	background-size: cover;
+	position: absolute;
+	right: -0.8rem;
+	bottom: .3rem;
+}

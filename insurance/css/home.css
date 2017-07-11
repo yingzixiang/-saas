@@ -1,0 +1,144 @@
+/*首页导航*/
+.main_nav{
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    justify-content: center;
+}
+.align{
+    display: flex;
+    align-items: center;
+}
+.nav_wrap{
+    flex: 1;
+    color: black;
+}
+.main_nav{
+    padding:5px 0px;
+    text-align: center;
+}
+.nav_wrap img{
+    width: 60%;
+}
+.nav_wrap p{
+   font-size: 0.8em;
+    color: black;
+}
+.search_wrap{
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 4rem;
+}
+/*热门推荐*/
+.home_hotRecommend{
+    background-color: white;
+    padding-bottom: 10px;
+}
+.home_title{
+    width: 100%;
+    height:70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.home_title span{
+    font-size: 1rem;
+    margin-left:10px;
+    color: black;
+}
+.home_title img{
+    width: 1.3rem;
+}
+.home-content{
+    width: 30vw!important;
+    /*height: 30vw;*/
+    /*background-color: lightblue;*/
+    margin-left: 20px;
+    margin-right: 0!important;
+}
+.swiper-img{
+    width: 30vw;
+    height: 30vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.swiper-img img{
+    height: 30vw;
+}
+.home-content h5{
+    color: black;
+}
+.home-content p{
+    color: red;
+}
+.swiper-container-hot{
+    width: 100%;
+    overflow: hidden;
+}
+/*新品推荐*/
+.home-newRecommend{
+    padding: 10px;
+}
+.newRecommend-title{
+    width: 100%;
+    height: 70px;
+    background-color: #f2f2f2;
+}
+.newRecommend-title-box{
+    width: 70vw;
+    height: 50%;
+    margin: 0 auto;
+    border-bottom: 1px solid black;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.newRecommend-title-main{
+    position: absolute;
+    padding: 0 0.5rem;
+    height: 100%;
+    top: 50%;
+    background-color:#f2f2f2;
+    display: flex;
+    align-items: center;
+}
+.newRecommend-title-main span{
+    font-size: 1rem;
+    margin-left: 10px;
+    color: black;
+}
+.newRecommend-title-main img{
+    width: 1.3rem;
+}
+.weui_media_price{
+    display: flex;
+    justify-content: space-between;
+}
+.weui_media_bd h4,p,div{
+    color: black;
+}
+.newRecommend_price{
+    color: red;
+}
+.weui_media_box{
+    padding: 0.5rem;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+#home-newrecommend-img{
+    width: 25vw;
+    height: 25vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+#home-newrecommend-img img{
+    height: 25vw;
+}
+.weui_media_desc{
+    margin-bottom: 0.5rem;
+}
+.weui_panel_bd a:last-child{
+    margin-bottom: 0;
+}

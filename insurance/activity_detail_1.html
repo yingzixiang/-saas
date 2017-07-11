@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="js/weui/css/jquery-weui.css" />
+		<link rel="stylesheet" href="js/weui/lib/weui.min.css" />
+		<script src="js/jquery.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/weui/js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type='text/javascript' src='js/weui/js/swiper.min.js'></script>
+		<title>活动详情</title>
+		<style type="text/css">
+			.swiper-slide img {
+				width: 100%;
+				height: 100%
+			}
+			
+			.swiper-slide {
+				width: 100%;
+				height: 15em
+			}
+			
+			.cell_bg {
+				padding-right: 2em;
+			}
+			
+			.cell_bg img {
+				width: 5em;
+				vertical-align: middle;
+			}
+			
+			.remianDate {
+				height: 5em;
+			}
+			
+			.remianDate li {
+				width: 45%;
+				float: left;
+				text-align: center;
+			}
+			
+			.remianDate li p {
+				margin: 5px auto;
+			}
+			
+			.line_s {
+				float: left;
+				height: 100%;
+				width: 1px;
+				background: -webkit-linear-gradient(to top, #e3e3e3 0%, #000 50%, #e3e3e3 100%);
+				background: -moz-linear-gradient(to top, #e3e3e3 0%, #000 50%, #e3e3e3 100%);
+				background: -o-linear-gradient(to top, #e3e3e3 0%, #000 50%, #e3e3e3 100%);
+				background: -webkit-gradient(linear, 0 0, 0 100%, from(#e3e3e3), color-stop(0.5, #000), to(#e3e3e3));
+				background: linear-gradient(to top, #e3e3e3 0%, #000 50%, #e3e3e3 100%);
+			}
+			
+			.weui_cell_ft {
+				color: #383838;
+			}
+			
+			.remain_mem,
+			.remain_date {
+				color: #383838;
+				font-style: italic;
+				font-size: 1em;
+			}
+			
+			.remain_mem {
+				font-size: 1.8em;
+				font-weight: bold;
+			}
+			
+			.remain {
+				font-size: 1.4em;
+				color: #383838;
+			}
+			
+			.weui_cells {
+				margin-top: 0;
+				background: transparent;
+			}
+			
+			.register {
+				margin-top: 1em;
+			}
+			
+			.btn_reg {
+				width: 50%;
+				float: left;
+				vertical-align: middle;
+				position: relative;
+				margin-left: auto;
+				margin-right: auto;
+				padding-left: 14px;
+				padding-right: 14px;
+				box-sizing: border-box;
+				font-size: 18px;
+				text-align: center;
+				text-decoration: none;
+				line-height: 2.33333333;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				overflow: hidden;
+				color: #d33646;
+				font-weight: bold;
+				font-style: italic;
+				background: linear-gradient(#fda688 0%, #fc808c 100%);
+			}
+			
+			#detail_fee {
+				background: transparent
+			}
+			
+			.swiper-pagination-bullet-active {
+				background: #888888;
+			}
+			
+			#detail {
+				margin-top: 1em;
+				padding: 1em;
+			}
+			
+			#detail li h1 {
+				color: #000;
+				font-weight: bold;
+				padding: 0.2em;
+			}
+			
+			#detail li p {
+				color: #383838;
+				padding: 0.2em;
+			}
+			
+			#detail li img {
+				width: 100%;
+				padding: 0 2em;
+			}
+			#detail_fee{
+				background: #fff;
+				box-shadow: 1px -1px 1px #989898;
+			}
+			#joinUs{
+				box-shadow: 1px -1px 1px #fd7382;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
+			<div class="swiper-wrapper">
+				<!--<div class="swiper-slide"><img src="img/images/043_02.jpg" alt=""></div>
+				<div class="swiper-slide"><img src="img/indexme/030_02.jpg" alt=""></div>-->
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
+		<div class="weui_cells">
+			<div class="weui_cell">
+				<div class="cell_bg">
+					<img src="img/active_detail/025_03.png" />
+				</div>
+				<div id="actName" class="weui_cell_ft">
+
+				</div>
+			</div>
+
+			<div class="weui_cell">
+				<div class="cell_bg">
+					<img src="img/active_detail/025_06.png" />
+				</div>
+				<div id="actTime" class="weui_cell_ft">
+
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="cell_bg">
+					<img src="img/active_detail/025_08.png" />
+				</div>
+				<div id="actAdress" class="weui_cell_ft">
+
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="cell_bg">
+					<img src="img/active_detail/025_10.png" />
+				</div>
+				<div id="actOrigize" class="weui_cell_ft">
+
+				</div>
+			</div>
+		</div>
+		<ul class="remianDate">
+			<li>
+				<p>剩余名额</p>
+				<p class="remain_mem">0</p>
+			</li>
+			<li>
+				<p>截止日期</p>
+				<p class="remain_date">
+					<span class="remain remain_date_year">
+						2000
+					</span>年
+					<span class="remain remain_date_month">
+						1
+					</span> 月
+					<span class="remain remain_date_day">
+						1
+					</span>日
+				</p>
+			</li>
+		</ul>
+		<ul id="detail">
+			<!--<li>
+				<h1>我的假</h1>
+				<p>我的假在</p>
+				<img src="img/images/043_02.jpg" alt="" />
+			</li>-->
+		</ul>
+	</body>
+	<script type="text/javascript">
+		//轮播图
+		var mySwiper = new Swiper('.swiper-container', {
+			speed: 400,
+			spaceBetween: 100,
+			autoplay: 2000,
+			pagination: '.swiper-pagination',
+			paginationClickable: true
+		});
+		$(function() {
+			var activityId = window.location.href.split(/activityId=/)[1].split(/&/)[0];
+			$.ajax({
+				url: "http://www.izerosoft.com.cn/activity/activityDetail",
+				type: "get",
+				data: {
+					activityId: activityId
+				},
+				success: function(obj) {
+					console.log(obj);
+					if(obj.result == 1) {
+						var starttime = new Date(obj.aicivity.startTime);
+						starttime = starttime.getFullYear() + "年" + (starttime.getMonth() + 1) + "月" + starttime.getDate() + "日开始";
+						$("#actName").html(obj.aicivity.activityName);
+						$("#actTime").html(starttime);
+						$("#actAdress").html(obj.aicivity.activityActaddress);
+						$("#actOrigize").html("由 " + obj.aicivity.activityOrganizers + " 组织");
+						var endtime = new Date(obj.aicivity.endTime);
+						$(".remain_date_year").html(endtime.getFullYear());
+						$(".remain_date_month").html((endtime.getMonth() + 1));
+						$(".remain_date_day").html(endtime.getDate());
+						var activityLogo = obj.aicivity.activityLogo.split(/,/);
+						for(var i = 0; i < activityLogo.length-1; i++) {
+							$(".swiper-wrapper").append("<div class='swiper-slide'><img src='" + activityLogo[i] + "'></div>");
+						}
+						var mySwiper = new Swiper('.swiper-container', {
+							speed: 400,
+							spaceBetween: 100,
+							autoplay: 2000,
+							pagination: '.swiper-pagination',
+							paginationClickable: true
+						}); //重置轮播
+
+						if(parseInt(obj.remain) + parseInt(obj.successnum) == 0) {
+							$(".remain_mem").html("不限");
+						} else {
+							$(".remain_mem").html(obj.remain);
+						}
+						//活动详情
+						var activitydetails = obj.activitydetails;
+						for(var i = 0; i < activitydetails.length; i++) {
+							if(i==activitydetails.length-1){
+								$("#detail").append("<li><h1>" +
+								activitydetails[i].activityDetailTitle +
+								"</h1><p>" +
+								activitydetails[i].activityDetailContent +
+								"</p></li>");
+							}else{
+								$("#detail").append("<li><h1>" +
+								activitydetails[i].activityDetailTitle +
+								"</h1><p>" +
+								activitydetails[i].activityDetailContent +
+								"</p><img src='" +
+								activitydetails[i].activityDetailPicture +
+								"'/></li>");
+							}	
+						}
+					} 
+				},
+				eror: function() {
+					$.toast("网络出错", "cancel");
+				}
+			});
+		}); //加载活动信息，及弹窗的用户名字
+	</script>
+
+</html>

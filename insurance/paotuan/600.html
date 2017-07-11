@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<script src="../js/jquery-2.2.4.js"></script>
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/21_1.css" />
+		<title>活动报名</title>
+	</head>
+	<body>
+		<div id="activeName"> 
+			<p><img src="img/p14.png" alt="" /></p>
+			<h3>活动名称</h3>
+		</div>
+		<ul id="activeList">
+			<li class="liTime">
+				<p><img src="../img/images/027_03.png" alt="" /></p>
+				<span>****年*月**日开始</span>
+			</li>
+			<li class="line"></li>
+			<li class="liTime">
+				<p><img src="../img/images/027_07.png" alt="" /></p>
+				<span>**集合</span>
+			</li>
+			<li class="line"></li>
+			<li class="liTime">
+				<p><img src="../img/images/027_10.png" alt="" /></p>
+				<span>****承办</span>
+			</li>
+		</ul>
+		<ul id="activeNum">
+			<li class="liTime">
+				<h3>已报名：<span>00</span></h3>
+				<h3>剩余人数：<span>00</span></h3>
+			</li>
+			<li class="line"></li>
+			<li class="liTime">
+				<div>截止报名时间：<span>****年*月**日</span></div>
+			</li>
+		</ul>
+		<div id="activeIndouce">
+			<span>
+				活动介绍：
+			</span>
+			<p>***************************************************</p>
+		</div>
+		<div id="fee">
+			<span>活动费用：</span>
+			<p><img src="../img/images/027_14.png" alt="" />
+				<span>50.00</span>
+			</p>
+		</div>
+		<fonter id="footer">
+			<button onclick="sign_in()">返回</button>
+		</fonter>
+		<div id="information">
+			<div class="infor_dialog">
+				<p id="t1"><span>亲爱的,</span><span>小小巴</span></p>
+				<p id="t2"><b>请填写一下信息，以便正常参加各类户外活动</b></p>
+				<input id="inp1" type="text" />
+				<input id="inp2" type="number" />
+				<input id="inp3" type="number" />
+				<p id="t3">
+					<img id="ok" src="img/p10.png" onclick="make_sure()" />
+					<img id="cha" src="img/p9.png" onclick="call_off()" />
+				</p>
+			</div>
+		</div>
+		<div class="modal" id="modal2">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="GroupErr">
+						<p>个人信息填写完成</p>
+						<form id="div2" name=alipayment action="alipayapi.jsp" method=post target="_blank">
+							<button type="submit"><a onclick="pay_it()" target="_blank">去付款</a></button>
+							<a onclick="dis_play()">继续填写</a>
+							<input id="inpp1" name="WIDout_trade_no" style="display:none" />
+							<input id="inpp2" name="WIDsubject" style="display:none" />
+							<input id="inpp3" name="WIDtotal_fee" style="display:none" />
+							<input id="inpp4" name="WIDshow_url" style="display:none" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		</form>
+		<div class="modal" id="modal1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="GroupErr">
+						<p id="title">真实姓名填写有误</p>
+						<p>
+							<a onclick="dis_play()">去修改</a>
+							<a onclick="call_off()">狠心离去</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function sign_in() {
+			window.location.href="../60.html";
+		}
+		function make_sure() {
+			var inp1 = $("#inp1").val();
+			var inp2 = $("#inp2").val();
+			var inp3 = $("#inp3").val();
+			if(!/^[\u4e00-\u9fa5]{2,}$/.test(inp1)) {　
+				$("#modal1").show();
+			} else if(!(/^\d{18}$/.test(inp2) || /^\d{17}x$/.test(inp2))) {
+				$("#title").html("身份证填写有误");
+				$("#modal1").show();
+			} else if(!/^\d{11}$/.test(inp3)) {
+				$("#title").html("联系电话填写有误");
+				$("#modal1").show();
+			} else {
+				$.ajax({
+				type:"get",
+				url:"http://xb.guegg.com/activity/activityRegistrationl",
+				data:{
+					memberName:inp1,
+					memberIdNumber:inp2,
+					memberMobile:inp3,
+					activityId:window.location.href.split(/activityId=/)[1].split(/&/)[0],
+					memberId:localStorage.getItem("memberId"),
+					cost:parseFloat($("#p10").html())
+				},
+				async:true,
+				success:function(res){
+					console.log(res);
+					if(res.result==1){
+						  $("#modal2").show();
+						}
+					}
+				});
+				
+			}
+		}
+		function call_off() {
+			$("#modal1").hide();
+			$("#information").hide();
+		}
+		function pay_it() {
+			var vNow = new Date();
+			var sNow = "";
+			sNow += String(vNow.getFullYear());
+			sNow += String(vNow.getMonth() + 1);
+			sNow += String(vNow.getDate());
+			sNow += String(vNow.getHours());
+			sNow += String(vNow.getMinutes());
+			sNow += String(vNow.getSeconds());
+			sNow += String(vNow.getMilliseconds());
+			$("#inpp1").val("");
+			$("#inpp2").val("");
+			$("#inpp3").val("");
+			$("#inpp1").val(sNow);
+			$("#inpp2").val("");
+			$("#inpp3").val($("#fee p span").html());
+		}
+		pay_it();
+		function dis_play() {
+			$("#modal1").hide();
+			$("#modal2").hide();
+		}
+		
+	$(function(){
+		var openid=localStorage.getItem("openid");
+		var memberId=localStorage.getItem("memberId");
+		var activityId=window.location.href.split(/activityId=/)[1].split(/&/)[0];
+		$.ajax({
+			type:"get",
+			url:"http://xb.guegg.com/member/detail",
+			data:{
+				openid:openid,
+				memberId:memberId
+			},
+			async:true,
+			success:function(obj){
+				$("#t1 span:eq(1)").html(obj.nickname);
+			}
+		});
+		$.ajax({
+			//url:"http://192.168.0.206:8080/activity/myActivityDetails",
+			url:"http://xb.guegg.com/activity/myActivityDetails",
+			type:"post",
+			data:{
+				activityId:activityId
+			},
+			success:function(obj){
+				console.log(obj);
+				if(obj.result==1){
+					var starttime=new Date(obj.aicivity.startTime);
+					console.log(starttime);
+					starttime=starttime.getFullYear()+"年"+
+						(starttime.getMonth()+1)+"月"+starttime.getDate()+"日开始";
+					var endtime=new Date(obj.aicivity.endTime);
+					endtime=endtime.getFullYear()+"年"+(endtime.getMonth()+1)+"月"+endtime.getDate()+"日结束";
+					$("#activeName p img").attr("src","");
+					$("#activeName p img").attr("src",obj.aicivity.activityLogo);
+					$("#activeName h3").html(obj.aicivity.activityName);
+					$("#activeList li:eq(0) span").html(starttime);
+					$("#activeList li:eq(2) span").html(obj.aicivity.activityActaddress+"集合");
+					$("#activeList li:eq(4) span").html(obj.aicivity.activityOrganizers+"承办");
+					$("#activeNum h3 span:eq(1)").html(obj.remain);
+					$("#activeNum h3 span:eq(0)").html(obj.successnum);
+					$("#activeNum .liTime div span").html(endtime);
+					$("#activeIndouce p").html(obj.aicivity.activityIntrodution);
+					$("#fee p span").html(obj.aicivity.activityCost+".00");
+					$("#inpp3").val(obj.aicivity.activityCost);
+				}else{
+					
+				}
+			},
+			eror:function(){
+				alert("网络出错！");
+			}
+		});
+		
+	});
+</script>
+</html>

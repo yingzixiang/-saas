@@ -1,0 +1,70 @@
+﻿.titleChange{
+	width:100%;
+	height:8%;
+	min-height:30px;
+}
+.titleChange a{
+	display: inline-block;
+	width:44%;
+	margin:3%;
+	line-height: 30px;
+	text-decoration: none;
+	text-align: center;
+	font-size: 15px;
+	color:#6D6D6D;
+}
+.hover{
+	font-weight: bold;
+	border-bottom: 3px solid #FD885E;
+	color:#DDDDDD !important;}
+/*赛事*/
+#Event{
+	height:auto;
+	padding: 3%;
+}
+#Event li{
+	width: 100%;
+	background: linear-gradient(to top,#FE895E 0%,#F25E6E 100%);
+	margin-bottom: 10px;
+	position: relative;
+	border-radius: 3px;
+	overflow: hidden;
+}
+#Event>li>p:last-child{
+	margin:0 5px;
+}
+#Event>li>p:last-child:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+#Event li p:first-child img:first-child{
+	width:100%;
+	max-height: 40vw;
+	min-height: 107px;
+}
+#Event li p:first-child img:last-child{
+	width:33px;
+	position: absolute;
+	top:2%;
+	left:2%;
+}
+#Event>li>p:last-child>span:first-child{
+	float: left;
+	font-size: 13px;
+}
+#Event>li>p:last-child>span:last-child{
+	float: right;
+	font-size: 12px;
+}
+#Event>li>p:last-child>span:last-child>span{
+	display: inline-block;
+	margin-bottom:5px ;
+	width:20px;
+	line-height:20px;
+	background-color: #2C2B2C;
+	border-radius: 3px;
+	vertical-align: top;
+	text-align: center;
+	font-size: 12px;
+}

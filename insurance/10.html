@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="js/weui/css/jquery-weui.min.css" />
+		<link rel="stylesheet" type="text/css" href="js/weui/lib/weui.css" />
+		<link rel="stylesheet" href="css/activity_invent.css" />
+		<link rel="stylesheet" type="text/css" href="css/register.css" />
+		<script src="js/jquery.2.1.min.js"></script>
+		<script src="js/weui/js/jquery-weui.min.js"></script>
+		<script type="text/javascript" src="js/weui/js/city-picker.js" charset="utf-8"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<title>发布活动</title>
+		<style type="text/css">
+			.weui_cells {
+				border: 1px solid #c8c8c8;
+				border-radius: 3px;
+				margin-top: 0;
+				background: linear-gradient(to top, #f8f8f8 0%, #e8e8e8 100%);
+			}
+			
+			.weui_textarea {
+				color: #383838;
+				background: transparent;
+				overflow-y: visible;
+			}
+			
+			#actDetail img {
+				width: 100%;
+			}
+			
+			#active_logo:after {
+				display: block;
+				content: "";
+				clear: both;
+			}
+			
+			#active_logo li {
+				float: left;
+				margin-right: 0.5em;
+				margin-bottom: 0.5em;
+			}
+			
+			.weui_textarea {
+				text-align: left;
+				
+			}
+			.title{
+				border-bottom: 1px solid #d7d7d7;
+				font-weight: bold;
+				color:#000;
+				font-size: 16px;
+			}
+			.weui_input{
+				width: inherit;
+				color:#383838
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<ul>
+			<li class="activity_detail">
+				<b style="background-image: url(img/active_detail/026_26.png);"></b>
+				<span>上传活动主题宣传图：</span>
+				<ul id="active_logo">
+					<li id="actLogoAdd">
+						<img onclick="actLogoAdd(this)" src="img/run01/02_15.png" alt="" />
+					</li>
+				</ul>
+			</li>
+			<li class="detail_line"></li>
+			<li class="activity_detail">
+				<b style="background-image: url(img/run33/027_03.png);"></b>
+				<div id="active_rungroup">
+					<div class="weui_cell weui_cell_select">
+						<div class="weui_cell_bd weui_cell_primary">
+							<select class="weui_select" name="select1">
+								<!--<option selected="" value="0">团队选择</option>-->
+							</select>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="detail_line"></li>
+			<li class="activity_detail">
+				<b style="background-image: url(img/active_detail/026_03.png);"></b>
+				<span>活动名称：</span>
+				<input id="active_name" class="weui_input" placeholder="请输入3至20个字符" type="text" />
+			</li>
+			<li class="detail_line"></li>
+			<li class="activity_detail">
+				<b style="background-image: url(img/active_detail/026_06.png);"></b>
+				<span>活动人数：</span>
+				<input id="active_mem" class="weui_input" placeholder="人数不限此项填0" type="number" />
+			</li>
+			<li class="detail_line"></li>
+			<li class="activity_detail">
+				<b style="background-image: url(img/active_detail/026_08.png);"></b>
+				<span>活动地点：</span>
+				<input id="active_id" class="weui_input" type="text" placeholder="活动集合地点" />
+			</li>
+			<li class="detail_line"></li>
+			<li class="activity_detail">
+				<b style="background-image: url(img/active_detail/026_14.png);"></b>
+				<span>活动费用：</span>
+				<input id="active_fee" class="weui_input" placeholder="活动免费此项填0" type="number" />
+			</li>
+			<li class="detail_line"></li>
+			<li class="activity_detail">
+				<b style="background-image: url(img/active_detail/026_16.png);"></b>
+				<span>开始时间：</span>
+				<input id="active_time" class="weui_input time_start_choose" placeholder="选择活动开始时间" type="text" />
+			</li>
+			<li class="activity_detail">
+				<b style=""></b>
+				<span>结束时间：</span>
+				<input id="active_time" class="weui_input time_end_choose" placeholder="选择活动结束时间" type="text" />
+			</li>
+			<li class="detail_line"></li>
+			<li class="activity_detail">
+				<b style="background-image: url(img/active_detail/026_20.png);"></b>
+				<span>活动详情：</span>
+				<div class="weui_cells weui_cells_form">
+					<div class="weui_cell">
+						<div class="weui_cell_bd weui_cell_primary" id="actDetail">
+							<input id="title_1" class="title weui_input" placeholder="标题"  type="text" />
+							<textarea class="weui_textarea" id="detailtxt_1" placeholder="文字介绍"></textarea>
+							<!--<img src="img/images/043_02.jpg" id="detailimg_1" alt="" />-->
+							<div class="weui_textarea_counter">
+								<img style="width: 1.8em;" onclick="chooseImage_detail(this)" src="img/active_detail/026_26.png" alt="1" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<!--li class="activity_detail">
+				<b style="background-image: url(img/active_detail/026_26.png);"></b>
+				<span>上传活动详情介绍图：</span>
+				<input type="text" id="bgServerId_detail" style="display: none;"/>
+				<div id="active_logo_detail" onclick="chooseImage_detail()">
+					<img class="logo_detail_ok" src="img/run01/02_15.png" alt="" />
+				</div>
+			</li-->
+			<li style="margin-bottom: 20px;"></li>
+		</ul>
+		<div>
+			<button class="btn_invent" onclick='btnInvent()'>发布</button>
+		</div>
+		<div class="modal active">
+			<!--用户登录验证-->
+			<div class="weui_msg">
+				<div class="weui_icon_area"><i class="weui_icon_success weui_icon_msg"></i></div>
+				<div class="weui_text_area">
+					<h2 class="weui_msg_title">活动发布成功</h2>
+					<p class="weui_msg_desc">内容详情，可根据实际需要安排</p>
+				</div>
+				<div class="weui_opr_area">
+					<p class="weui_btn_area">
+						<a href="javascript:;" class="weui_btn weui_btn_primary">确定</a>
+						<a href="javascript:;" onclick="(function(){$('.modal').hide()})()" class="weui_btn weui_btn_default">取消</a>
+					</p>
+				</div>
+				<div class="weui_extra_area">
+					<a href="">查看详情</a>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(".time_start_choose").datetimePicker();
+		$(".time_end_choose").datetimePicker();
+		//通过ready接口处理成功验证
+		wx.ready(function() {
+			// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后
+		});
+		wx.error(function(res) {
+			// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+		});
+		var accessToken;
+		var memberId = sessionStorage.getItem("memberId");
+		var activityGroupId;
+		$.ajax({
+			type: "get",
+			url: "http://www.izerosoft.com.cn/code/getAccessToken",
+			async: true,
+			success: function(res) {
+				accessToken = res.accessToken;
+				$.ajax({
+					type: "post",
+					url: "http://www.izerosoft.com.cn/code/sign",
+					dataType: "json",
+					data: {
+						url: window.location.href.split('#')[0],
+						jsapi_ticket: res.ticket
+					},
+					success: function(obj) {
+						wx.config({
+							debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+							appId: obj.hashMap.appId, // 必填，公众号的唯一标识
+							timestamp: obj.hashMap.timestamp, // 必填，生成签名的时间戳
+							nonceStr: obj.hashMap.nonceStr, // 必填，生成签名的随机串
+							signature: obj.hashMap.signature, // 必填，签名，见附录1
+							jsApiList: ['closeWindow', 'chooseImage', 'uploadImage', 'downloadImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+						});
+					}
+				});
+			}
+		});
+		$(function() {
+			$.ajax({
+				url: 'http://www.izerosoft.com.cn/group/myGroupList',
+				type: 'get',
+				data: {
+					memberId: sessionStorage.getItem("memberId"),
+					type: 1
+				},
+				success: function(obj) {
+					console.log(obj);
+					if(obj.result == 1) {
+						for(var i = obj.personalList.length - 1; i >= 0; i--) {
+							$(".weui_select").append(
+								"<option value='" + obj.personalList[i].groupId + "'>" + obj.personalList[i].groupGroupname + "</option>"
+							);
+						}
+					} else {
+						$('.weui_select').append("<option><a href='01.html'>无(去创建团队)</a><img class='rt opc' src='img/run10/010_03.png'/></option>");
+					}
+				}
+			});
+		});
+		var actLogoAdd = function(me) {
+			var index = $(me).parent().index();
+			$("#actLogoAdd").before("<li><img id='actLogo" + index + "' src='' alt=''/></li>");
+			console.log(index);
+			wx.chooseImage({
+				count: 1, // 默认9
+				sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+				sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+				success: function(res) {
+					var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					var localId = localIds[0];
+					$("#actLogo" + index).attr("src", localId);
+					//上传图片
+					wx.uploadImage({
+						localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+						isShowProgressTips: 1, // 默认为1，显示进度提示
+						success: function(res) {
+							$("#actLogo" + index).attr("alt", res.serverId); // 返回图片的服务器端ID
+						}
+					});
+				}
+			});
+		}
+		var chooseImage_detail = function(me) {
+			var alt = parseInt($(me).attr("alt"));
+			$(me).attr("alt", alt + 1);
+			console.log(alt);
+			wx.chooseImage({
+				count: 1, // 默认9
+				sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+				sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+				success: function(res) {
+					var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+					var localId = localIds[0];
+					$("#detailtxt_" + alt).after("<img src='"+localId+"' id='detailimg_" + alt + "'/>" +
+						"<input id='title_"+alt+"' class='title weui_input' placeholder='标题'  type='text' /><textarea class='weui_textarea' placeholder='文字介绍' id='detailtxt_" + (alt + 1) + "'></textarea>");
+					//上传图片
+					wx.uploadImage({
+						localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+						isShowProgressTips: 1, // 默认为1，显示进度提示
+						success: function(res) {
+							$("#detailimg_" + alt).attr("alt", res.serverId); // 返回图片的服务器端ID
+						}
+					});
+				}
+			});
+			$("#detailtxt_" + (alt + 1)).focus();
+		}
+		var i=$(".time_start_choose").val();
+		console.log(i);
+		console.log(i=="");
+		function btnInvent() {
+			/*发布活动*/
+			var startActivityTime = time($(".time_start_choose").val());
+			var endActivityTime = time($(".time_end_choose").val());
+			var mediaIdDetail = [];
+			for(var i = 0, mediaId1; i < $("#active_logo li").length - 1; i++) {
+				if(i == 0) {
+					mediaId1 = $("#actLogo0").attr("alt");
+				} else {
+					mediaId1 += "," + $("#actLogo" + i).attr("alt");
+				}
+			}
+			for(var i = 0; i < $("#actDetail textarea").length; i++) {
+				mediaIdDetail[i] = {
+					content: $($("#actDetail textarea")[i]).val(),
+					picture: $($("#actDetail img")[i]).attr("alt"),
+					title: $($("#actDetail input")[i]).val(),
+				};
+			}
+			var nowTime = (new Date()).getTime();
+			var data = {
+				activityName: $("#active_name").val(),
+				activityIntrodution: $(".weui_textarea").val(),
+				startActivityTime: $(".time_start_choose").val(),
+				endActivityTime: $(".time_end_choose").val(),
+				activityActaddress: $("#active_id").val(),
+				activityCost: $("#active_fee").val(),
+				activityPlowerlimit: $("#active_mem").val(),
+				activityGroupName: $(".weui_select").text(),
+				isShow: 1,
+				activityGroupId: $(".weui_select").val(),
+				memberId: sessionStorage.getItem("memberId"), //活动详情页图片
+				mediaId1: mediaId1,
+				accessToken: accessToken,
+				mediaId: "",
+				mediaIdDetail: JSON.stringify(mediaIdDetail)
+			};
+			if(nowTime > startActivityTime) {
+				$.toptip('活动开始时间格式错误', 'error');
+			} else if(startActivityTime > endActivityTime) {
+				$.toptip('活动开始时间格式错误', 'error');
+			} else if(($("#active_name").val().length) < 3 || ($("#active_name").val().length) >= 20) {
+				$("#active_name").val("").focus();
+				$.toptip('活动名称格式错误', 'error');
+			} else if(($("#active_fee").val()=="") || $("#active_fee").val() < 0) {
+				$("#active_fee").focus();
+				$.toptip('活动费用格式错误', 'error');
+			} else if(($("#active_mem").val()=="") || ($("#active_mem").val()) < 0) {
+				$("#active_mem").focus();
+				$.toptip('活动人数格式错误', 'error');
+			} else if(startActivityTime == "") {
+				$.toptip('活动开始时间格式错误', 'error');
+			} else if(endActivityTime == "") {
+				$.toptip('活动结束时间格式错误', 'error');
+			} else if(mediaId1.length<5){
+				$.toptip('请上传活动主题宣传图', 'error');
+			}else if($("#active_id").val()==""){
+				$.toptip('活动地点格式错误', 'error');
+			}else if($(".weui_select").val()==""){
+				$.toptip('请输入活动团队', 'error');
+			}else{
+				$.showLoading("正在发布...");
+				$.ajax({
+					url: 'http://www.izerosoft.com.cn/activity/realeaseActivities',
+					type: 'post',
+					data: data,
+					success: function(obj) {
+						console.log(obj);
+						if(obj.result == 1) {
+							$.hideLoading();
+							$('.modal:eq(0)').removeClass('active'); //创建成功
+							$(".weui_btn_primary").attr("href", "21.html?code=" + sessionStorage.getItem('code'));
+							$(".weui_extra_area a").attr("href", "activity_detail_1.html?activityId=" + obj.id);
+						} else {
+							$.toptip('发布失败', '2000', 'error');
+							$.hideLoading();
+						}
+					},
+					error: function() {
+						alert("网络错误");
+						$.hideLoading();
+					}
+				});
+			}
+		}
+
+		function changeLogoImg() {
+			$("#active_logo li").click(function() {
+				var i = $(this).index();
+				if(i < $("#active_logo li").length - 1) {
+					wx.chooseImage({
+						count: 1, // 默认9
+						sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+
+						sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+
+						success: function(res) {
+
+							var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+
+							var localId = localIds[0];
+							$("#detailimg_" + i).attr("src", localId);
+							//上传图片
+							wx.uploadImage({
+								localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+								isShowProgressTips: 1, // 默认为1，显示进度提示
+								success: function(res) {
+									$("#detailimg_" + i).attr("alt", res.serverId); // 返回图片的服务器端ID
+								}
+							});
+						}
+					});
+				}
+
+			});
+		}
+
+		function changeDetailImg() {
+			$("#actDetail>img").click(function() {
+				var i = parseInt($(this).index()) - 1;
+
+				wx.chooseImage({
+					count: 1, // 默认9
+
+					sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+
+					sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+
+					success: function(res) {
+
+						var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+
+						var localId = localIds[0];
+						$("#actDetail" + i).attr("src", localId);
+						//上传图片
+						wx.uploadImage({
+							localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+							isShowProgressTips: 1, // 默认为1，显示进度提示
+							success: function(res) {
+								$("#actLogo" + i).attr("alt", res.serverId); // 返回图片的服务器端ID
+							}
+						});
+					}
+				});
+
+			});
+		}
+
+		function time(starttime) {
+			starttime = starttime.replace(new RegExp("-", "gm"), "/");
+			return(new Date(starttime)).getTime(); //得到毫秒数
+		}
+	</script>
+
+</html>

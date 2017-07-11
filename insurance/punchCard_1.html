@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<script src="js/jquery.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="js/weui/css/jquery-weui.css" />
+		<link rel="stylesheet" href="js/weui/lib/weui.min.css" />
+		<script src="js/weui/js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
+		<title>跑量打卡</title>
+		<style type="text/css">
+			.cell_bg img {
+				width: 2em;
+				vertical-align: middle;
+			}
+			
+			.cell_bg span {
+				vertical-align: middle;
+			}
+			.TimeCard li{
+				float:left;
+				width: 50%;
+				text-align: center;
+				margin: 8px 0;
+			}
+			.TimeCard img{
+				margin-right: 10px;
+				width: 1.5em;
+				vertical-align: middle;
+			}
+			.PunCardlist>li{
+				border-top: 1px solid #ebecec;
+				
+			}
+			.PunCardlist>li:after{
+				display: block;
+				clear: both;
+				content: "";
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="weui_cells">
+			<div class="weui_cell">
+				<div class="cell_bg">
+					<img src="img/images/punCard_03.png" />
+					<span>本月目标：</span>
+				</div>
+				<div class="weui_cell_ft" id="Monthinput">
+					0km
+				</div>
+			</div>
+			<ul class="PunCardlist">
+				<li>
+					<ul class="TimeCard">
+						<li><img src="img/images/punCard_06.png" alt="" /><span>时间</span></li>
+						<li><img src="img/images/punCard_08.png" alt="" /><span>打卡</span></li>
+					</ul>
+				</li>
+				<!--<li>
+					<ul class="TimeCard">
+						<li>2016-5-10</li>
+						<li>5km</li>
+					</ul>
+				</li>-->
+			</ul>
+			<div class="weui_cell">
+				<div class="cell_bg">
+					<img src="img/images/punCard_12.png" />
+					<span>已完成：</span>
+				</div>
+				<div class="weui_cell_ft" id="Monthinputed">
+					0km
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(function() {
+			var memberId = sessionStorage.getItem("memberId");
+			$.ajax({
+				type: "get",
+				url: "http://xb.guegg.com/runmile/mileinfo?memberId=" + memberId,
+				async: true,
+				success: function(res) {
+					console.log(res);
+					$(".bg_img img").attr("src", res.member.memberPhoto);
+					$(".member_info h2").html(res.member.memberName);
+					if(res.Record == "null") {
+						
+					} else {
+						$("#Monthinput").html(res.target.miletargetTarmileage+"km");
+						$("#Monthinputed").html(res.sum+"km");
+						for(var i=0,time="";i<res.Record.length;i++){
+							time= new Date(res.Record[i].clockinDate);
+							time=time.getFullYear()+"-"+(time.getMonth()+1)+"-"+time.getDate();
+							$(".PunCardlist").append("<li><ul class='TimeCard'><li>"+time+"</li><li>"+res.Record[i].clockinResults+"km</li></ul></li>");
+						}
+					}
+				}
+			});
+		});
+		
+	</script>
+
+</html>

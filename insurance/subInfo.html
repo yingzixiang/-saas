@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="js/weui/css/jquery-weui.css" />
+    <link rel="stylesheet" href="js/weui/lib/weui.min.css" />
+    <link rel="stylesheet" href="css/subinfo.css">
+    <script src="js/jquery.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/weui/js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
+    <title>提交资料</title>
+    <style type="text/css">
+        body {
+            background: #fff;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .weui_cell_hd img {
+            /*width: 32px;*/
+            /*height: 32px;*/
+        }
+
+        .weui_cell_primary img {
+            /*width: 20px;*/
+            /*height: 20px;*/
+            margin: 0 5px;
+            vertical-align: text-bottom;
+        }
+        .weui_cell_primary{
+            display: flex;
+            justify-content: space-between;
+            line-height: 31px;
+        }
+        .weui_label {
+            width: 50px;
+        }
+
+        #header {
+            text-align: center;
+        }
+
+        #header img {
+            height: 1.5em;
+        }
+
+        .weui_input {
+            color: #383838
+        }
+
+        #addinfor {
+            color: red;
+            margin: 10px auto;
+            width: 15em;
+            font-size: 14px;
+        }
+
+        .weui_dialog {
+            top: 30%;
+            left: 7%
+        }
+
+        .weui_cells {
+            margin-top: 0;
+        }
+        #choose-cate{
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 65vw;
+        }
+    </style>
+</head>
+
+<body>
+<form name="form0" id="form0">
+<div id="header"><img src="img/images/register_01.png" alt="" /></div>
+<div class="weui_cells">
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label"><img src="img/subinfo/name.png" alt="" style="
+margin-left: 5px"/></label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input id="actName" class="weui_input" type="text" placeholder="姓名">
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label"><img src="img/subinfo/idcard.png" alt="" /></label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input id="actId" class="weui_input" type="text" placeholder="身份证号码">
+        </div>
+    </div>
+    <div class="weui_cell">
+        <div class="weui_cell_hd"><label class="weui_label"><img src="img/subinfo/phone.png" alt="" /></label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <input id="actNum" class="weui_input" type="tel" placeholder="号码">
+        </div>
+    </div>
+    <div class="weui_cell choose_insurance">
+        <div class="weui_cell_hd"><label class="weui_label"><img src="img/subinfo/insurance.png" alt="" /></label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <div class="subinfo_insurance_name" style="color: black" id="choose-company">保险公司选择</div>
+            <img src="img/subinfo/right.png" alt="">
+        </div>
+    </div>
+    <div class="weui_cell choose_category">
+        <div class="weui_cell_hd"><label class="weui_label"><img src="img/subinfo/category.png" alt="" /></label></div>
+        <div class="weui_cell_bd weui_cell_primary">
+            <div class="subinfo_insurance_name" style="color: black" id="choose-cate">保险种类选择</div>
+            <img src="img/subinfo/right.png" alt="">
+        </div>
+    </div>
+    <div class="weui_cell" style="border: none">
+        <div class="weui_cell_hd"><img src="img/subinfo/drivecard.png" alt="" /></div>
+        <span style="color: black;margin-left: 15px">行驶证</span>
+    </div>
+    <div class="weui_cell weui_cell_warn">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <div class="weui_uploader">
+                    <div class="weui_uploader_bd">
+
+                        <img src="" alt="" id="img0" class="weui_uploader_file weui_uploader_status">
+
+                        <div class="weui_uploader_input_wrp">
+                            <input class="weui_uploader_input" id="file0" type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="height:5em"></div>
+<a href="javascript:;" class="weui_btn weui_btn_primary mine-btn">提交资料</a>
+<div class="shade"></div>
+<div class="shade-select insurance-select">
+    <div class="shade-select-box">
+        <div class="shade-select-title">
+            <img src="img/subinfo/insurance.png" alt="">
+            <span>保险公司</span>
+            <img src="img/subinfo/close.png" alt="" class="close-shade">
+        </div>
+        <ul class="shade-select-body">
+            <input type="radio" id="input11" value="天平保险" name="insurance">
+            <label class="shade-select-btn" for="input11">天平保险</label>
+            <input type="radio" id="input12" value="浙商保险" name="insurance">
+            <label class="shade-select-btn" for="input12">浙商保险</label>
+            <input type="radio" id="input13" value="人保保险" name="insurance">
+            <label class="shade-select-btn" for="input13">人保保险</label>
+            <input type="radio" id="input14" value="平安保险" name="insurance">
+            <label class="shade-select-btn" for="input14">平安保险</label>
+            <input type="radio" id="input15" value="天安保险" name="insurance">
+            <label class="shade-select-btn" for="input15">天安保险</label>
+            <input type="radio" id="input16" value="大地保险" name="insurance">
+            <label class="shade-select-btn" for="input16">大地保险</label>
+            <input type="radio" id="input17" value="利宝保险" name="insurance">
+            <label class="shade-select-btn" for="input17">利宝保险</label>
+            <input type="radio" id="input18" value="太平洋保险" name="insurance">
+            <label class="shade-select-btn" for="input18">太平洋保险</label>
+        </ul>
+    </div>
+    <div class="shade-select-sub">确定</div>
+</div>
+<div class="shade-select category-select">
+    <div class="shade-select-box">
+        <div class="shade-select-title">
+            <img src="img/subinfo/category.png" alt="">
+            <span>保险总类</span>
+            <img src="img/subinfo/close.png" alt="" class="close-shade">
+        </div>
+        <p><em>主险</em>(第三方责任险,可选择一种)</p>
+        <ul class="shade-select-body">
+            <input type="radio" id="input21" value="50万" name="price">
+            <label class="shade-select-btn" for="input21">50万</label>
+            <input type="radio" id="input22" value="100万" name="price">
+            <label class="shade-select-btn" for="input22">100万</label>
+            <input type="radio" id="input23" value="150万" name="price">
+            <label class="shade-select-btn" for="input23">150万</label>
+        </ul>
+        <p><em>附加险</em>(可多选)</p>
+        <ul class="shade-select-body">
+            <input type="checkbox" id="input31" value="车身划痕险" name="subjoin">
+            <label class="shade-select-btn" value="22" for="input31">车身划痕险</label>
+            <input type="checkbox" id="input32" value="全车盗抢险" name="subjoin">
+            <label class="shade-select-btn" for="input32">全车盗抢险</label>
+            <input type="checkbox" id="input33" value="司机座位责任险" name="subjoin"  checked="checked" disabled>
+            <label class="shade-select-btn" for="input33">司机座位责任险</label>
+            <input type="checkbox" id="input34" value="自燃险" name="subjoin">
+            <label class="shade-select-btn" for="input34">自燃险</label>
+            <input type="checkbox" id="input35" value="涉水险" name="subjoin">
+            <label class="shade-select-btn" for="input35">涉水险</label>
+            <input type="checkbox" id="input36" value="倒车镜车灯单独损坏险" name="subjoin">
+            <label class="shade-select-btn" for="input36">倒车镜车灯单独损坏险</label>
+            <input type="checkbox" id="input37" value="玻璃破碎险" name="subjoin">
+            <label class="shade-select-btn" for="input37">玻璃破碎险</label>
+            <input type="checkbox" id="input38" value="不计免赔险" name="subjoin"  checked="checked" disabled>
+            <label class="shade-select-btn" for="input38">不计免赔险</label>
+            <input type="checkbox" id="input39" value="乘客座位责任险" name="subjoin"  checked="checked" disabled>
+            <label class="shade-select-btn" for="input39">不计免赔险</label>
+        </ul>
+    </div>
+    <div class="shade-select-sub">确定</div>
+</div>
+</form>
+</body>
+<script type="text/javascript">
+    var img = "";
+    <!--点击弹出商品信息-->
+    $(".choose_insurance").on("touchstart",function () {
+        $(".shade").css("display","block");
+        $(".insurance-select").css("transform","translateY(0)");
+    })
+    $(".close-shade").on("touchstart",function () {
+        $(".shade-select").css("transform","translateY(100%)");
+        setTimeout(function(){
+            $(".shade").css("display","none");
+        },600)
+    })
+    $(".shade-select-sub").on("touchstart",function(){
+        $(".shade-select").css("transform","translateY(100%)");
+        setTimeout(function(){
+            $(".shade").css("display","none");
+        },600)
+        changeText();
+    })
+    $(".choose_category").on("touchstart",function () {
+        $(".shade").css("display","block");
+        $(".category-select").css("transform","translateY(0)")
+    })
+    //如果选择,替换文字
+    function changeText() {
+        var str = "";
+        if(decodeURIComponent($("input[name='insurance']:checked").serialize(), true)!=""){
+            var comp = decodeURIComponent($("input[name='insurance']:checked").serialize(), true);
+            var newcomp = comp.split("=")[1];
+            $("#choose-company").text(newcomp);
+        }
+        if(decodeURIComponent($("input[name='price']:checked").serialize(), true)!=""){
+            var pric = decodeURIComponent($("input[name='price']:checked").serialize(), true);
+            var newpric = pric.split("=")[1];
+            str += newpric+",";
+            $("#choose-cate").text(str);
+        }
+        if(decodeURIComponent($("input[name='subjoin']:checked").serialize(), true)!=""){;
+            var cate = decodeURIComponent($("input[name='subjoin']:checked").serialize(), true);
+            var newcateArr = cate.split("subjoin=");
+//            var cateArr = newcateArr.split("&");
+            var catestr = newcateArr.join("");
+            str += catestr;
+            $("#choose-cate").text(str);
+        }
+    }
+
+//   添加图片
+    $("#file0").change(function() {
+        var objUrl = getObjectURL(this.files[0]);
+        img = objUrl;
+        if(objUrl) {
+            $("#img0").attr("src", objUrl);
+            $("#img0").css("display","block");
+        }
+    });
+    //建立一個可存取到該file的url
+    function getObjectURL(file) {
+        var url = null;
+        if(window.createObjectURL != undefined) { // basic
+            url = window.createObjectURL(file);
+        } else if(window.URL != undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file);
+        } else if(window.webkitURL != undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+//    提交资料
+    $(".mine-btn").on("click",function() {
+        var name = $("#actName").val();
+        var idcard = $("#actId").val();
+        var phonenum = $("#actNum").val();
+        var company = decodeURIComponent($("input[name='insurance']:checked").serialize(), true);
+        var price = decodeURIComponent($("input[name='price']:checked").serialize(), true);
+        var subjoin = decodeURIComponent($("input[name='subjoin']:checked").serialize(), true) + "&subjoin=司机座位责任险&subjoin=不计免赔险&subjoin=乘客座位责任险";
+        var img = $("#img0");
+        var files = new FormData();
+        files.append("name",name);
+        files.append("idcard",idcard);
+        files.append("company",company);
+        files.append("price",price);
+        files.append("subjoin",subjoin);
+        files.append("img",img);
+        if(!/^[\u4e00-\u9fa5]{2,}$/.test(name)) {
+            $.toptip('姓名格式错误', 'error');
+        } else if(!(/^\d{18}$/.test(idcard) || /^\d{17}x$/.test(idcard))) {
+            $.toptip('身份证格式错误', 'error');
+        } else if(!/^\d{11}$/.test(phonenum)) {
+            $.toptip('联系方式错误', 'error');
+        } else if(company==""||company==undefined || company==null){
+            $.toptip('请选择公司', 'error');
+        } else {
+            $.ajax({
+                type: "post",
+                url: "",
+                async: true,
+                data: files,
+                dataType: "json",
+                processData:false,
+                contentType:false,
+                success: function (data) {
+                    $.toptip('提交成功', 'success');
+                    console.log(data);
+                }
+            });
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/34.css" />
+		<script src="js/jquery-2.2.4.js"></script>
+		<script src="js/touch-0.2.14.min.js"></script>
+		<script src="js/weui/js/jquery-weui.js"></script>
+		<title>我发布的</title>
+		<style>
+			.btn {
+				margin-top: 50px;
+			}
+			
+			#MyPaotuanList {
+				padding: 3%;
+			}
+			
+			#MyPaotuanList li {
+				background: linear-gradient(to bottom, #f8f8f8 0%, #e8e8e8 100%);
+				margin-bottom: 10px;
+				border-radius: 3px;
+				height: 60px;
+			}
+			
+			#MyPaotuanList li>p {
+				width: 100%;
+				height: 3px;
+				border-radius: 2px;
+			}
+			
+			.myrungrouplist>p {
+				height: 40px;
+				width: 11%;
+				margin: 10px 2%;
+			}
+			
+			.myrungrouplist div p:first-child {
+				color: #383838;
+				font-size: 3.2vw;
+				text-align: center;
+			}
+			
+			.myrungrouplist div p:last-child {
+				line-height: 29px;
+				font-size: 2.2vw;
+				color: #686868;
+				text-align: center;
+				overflow: hidden;
+			}
+			
+			.myrungrouplist div {
+				width: 32%;
+				line-height: 29px;
+			}
+			
+			.myrungrouplist div> p> span {
+				font-size: 2.5vw;
+			}
+			
+			.p1 {
+				margin-right: 0 !important;
+				margin-left: 0 !important;
+				font-size: 2.8vw;
+				width: 30% !important;
+				line-height: 40px;
+				text-align: center;
+			}
+			
+			.p1 span {
+				font-size: 3.5vw;
+				color: #FF0048;
+			}
+			
+			#MyPaotuanList button,
+			#MyPaotuanList input {
+				float: right;
+				font-style: italic;
+				width: 18%;
+				border: 1px solid #c8c8c8;
+				padding: 5px 0;
+				margin: 0;
+				margin-top: 4vw;
+				border-radius: 4px;
+				background: linear-gradient(to bottom, #f8f8f8 0%, #e8e8e8 100%);
+				margin-right: 3vw;
+				font-weight: bold;
+				font-size: 13px;
+			}
+			
+			#MyPaotuanList button a {
+				text-decoration: none;
+				color: #f8f8f8;
+			}
+			
+			#mypart img {
+				height: 100%
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="AboutRun">
+			<div id="mypart">
+				<div id="search">
+					<img style="width: 35%;padding:10px;padding-bottom: 0;" src="img/run60/59_03.png" alt="" />
+					<img class="active" src="img/run60/60_02.png" />
+				</div>
+				<ul id="MyPaotuanList" class="MyPaotuanList">
+					<!--li>
+						<p></p>
+						<div class="myrungrouplist">
+							<p><img src="img/run01/01_02.png" alt="" /></p>
+							<div>
+								<p>有爱就跑七夕活动</p>
+								<p><span>2016.08.08</span>&nbsp;开始</p>
+							</div>
+							<p class="p1"><span style="color:#FF0048;">报名中</span></p>
+							<input type="button" style="margin-right: 3vw;" value="活动详情">
+						</div>
+					</li>
+					<li>
+						<p></p>
+						<div class="myrungrouplist">
+							<p><img src="img/run01/01_02.png" alt="" /></p>
+							<div>
+								<p>有爱就跑七夕活动</p>
+								<p><span>2016.08.08</span>&nbsp;开始</p>
+							</div>
+							<p class="p1"><span style="color:#989898;">已完成</span></p>
+							<input type="button" style="margin-right: 3vw;" value="活动详情" disabled>
+						</div>
+					</li-->
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script>
+		//我报名的活动
+		var memberId = window.sessionStorage.getItem("memberId");
+		/**我发布的**/
+		$.ajax({
+			url: "http://www.izerosoft.com.cn/activity/myIssueActList",
+			type: "get",
+			data: {
+				memberId: memberId,
+			},
+			success: function(obj) {
+				console.log(obj);
+				if(obj.result == 1) {
+					$(".MyPaotuanList").html("");
+					var date = new Date();
+					for(var i = 0, MyPaotuanList = "", newTime = ""; i < obj.activityList.length; i++) {
+						newTime = new Date(obj.activityList[i].startTime);
+						newTime = newTime.getFullYear() + "." +
+							(newTime.getMonth() + 1) + "." +
+							newTime.getDate();
+						///newTime.getHours()+":"+
+						//newTime.getMinutes()+":"+
+						//newTime.getSeconds();
+						$(".MyPaotuanList").append(
+							"<li alt='" + obj.activityList[i].activityId + "'><p></p><div class='myrungrouplist'><p><img src='" +
+							obj.activityList[i].activityLogo.split(/,/)[0] + 
+							"'/></p><div><p>" +
+							obj.activityList[i].activityName +
+							"</p><p><span>" +
+							newTime +
+							"</span>&nbsp;开始</p></div><p class='p1'><span style='color:" +
+							(date < obj.activityList[i].startTime ?
+								"#FF0048;'>报名中" : "#989898;'>已完成") +
+							"</span></p><input type='button' style='margin-right: 3vw;' value='活动详情'></div></li>");
+					}
+					activityMem();
+				} else if(obj.result == 0) {
+					$(".MyPaotuanList").hide();
+					$(".search img:eq(1)").show();
+				}
+			},
+			eror: function() {
+				alert("网络出错！");
+			}
+		});
+
+		function activityMem() {
+			$(".MyPaotuanList li").click(function() {
+				window.location.href = "70.html?activityId=" + $(this).attr("alt");
+			});
+		}
+	</script>
+
+</html>

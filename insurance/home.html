@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="js/weui/css/jquery-weui.css" />
+    <link rel="stylesheet" href="js/weui/lib/weui.min.css" />
+    <link rel="stylesheet" href="css/home.css">
+    <script src="js/jquery.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/weui/js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type='text/javascript' src='js/weui/js/swiper.min.js'></script>
+    <title>主页</title>
+    <style type="text/css">
+        .top-slide img {
+            width: 100%;
+        }
+        .top-slide {
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="weui_tab">
+    <div class="weui_tab_bd">
+        <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide top-slide"><img src="img/home/topSwiper.png" alt=""></div>
+                <div class="swiper-slide top-slide"><img src="img/home/topSwiper.png" alt=""></div>
+                <div class="swiper-slide top-slide"><img src="img/home/topSwiper.png" alt=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="main_nav">
+            <div class="nav_wrap"><img src="img/home/nav1.png"><p>汽车</p></div>
+            <div class="nav_wrap"><img src="img/home/nav2.png"><p>运动</p></div>
+            <div class="nav_wrap"><img src="img/home/nav3.png"><p>驾校</p></div>
+            <div class="nav_wrap"><img src="img/home/nav4.png"><p>医疗</p></div>
+            <div class="nav_wrap"><img src="img/home/nav5.png"><p>企业</p></div>
+        </div>
+        <div class="search_wrap align">
+            <div class="weui_search_bar" id="search_bar" style="flex: 1;background-color: #f2f2f2;border: none">
+                <form class="weui_search_outer">
+                    <div class="weui_search_inner">
+                        <i class="weui_icon_search"></i>
+                        <input type="search" class="weui_search_input" id="search_input" placeholder="搜索商品" required/>
+                        <a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
+                    </div>
+                    <label for="search_input" class="weui_search_text" id="search_text">
+                        <i class="weui_icon_search"></i>
+                        <span>搜索商品</span>
+                    </label>
+                </form>
+                <a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
+            </div>
+        </div>
+        <div class="home_hotRecommend">
+            <div class="home_title">
+                <img src="img/home/hot.png">
+                <span>热门推荐</span>
+            </div>
+            <!--热门推荐-->
+            <div class="swiper-container-hot">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide home-content">
+                        <!--<img src="img/home/hot-pic.png">-->
+                        <div class="swiper-img"><img src="img/home/hot-pic.png"></div>
+                        <h5>汽车-个人车险</h5>
+                        <p>$79.00</p>
+                    </div>
+                    <div class="swiper-slide home-content">
+                        <!--<img src="img/home/hot-pic.png">-->
+                        <div class="swiper-img"><img src="img/home/hot-pic.png"></div>
+                        <h5>汽车-个人车险</h5>
+                        <p>$79.00</p>
+                    </div>
+                    <div class="swiper-slide home-content">
+                        <!--<img src="img/home/hot-pic.png">-->
+                        <div class="swiper-img"><img src="img/home/hot-pic.png"></div>
+                        <h5>汽车-个人车险</h5>
+                        <p>$79.00</p>
+                    </div>
+                    <div class="swiper-slide home-content">
+                        <!--<img src="img/home/hot-pic.png">-->
+                        <div class="swiper-img"><img src="img/home/hot-pic.png"></div>
+                        <h5>汽车-个人车险</h5>
+                        <p>$79.00</p>
+                    </div>
+                    <div class="swiper-slide home-content">
+                        <!--<img src="img/home/hot-pic.png">-->
+                        <div class="swiper-img"><img src="img/home/hot-pic.png"></div>
+                        <h5>汽车-个人车险</h5>
+                        <p>$79.00</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--新品推荐-->
+        <div class="newRecommend-title">
+            <div class="newRecommend-title-box">
+                <div class="newRecommend-title-main">
+                    <img src="img/home/newrecommend.png" alt="">
+                    <span>新品推荐</span>
+                </div>
+            </div>
+        </div>
+        <div class="home-newRecommend">
+            <div class="weui_panel weui_panel_access">
+                <!--<div class="weui_panel_hd">图文组合列表</div>-->
+                <div class="weui_panel_bd">
+                    <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                        <div class="weui_media_hd" id="home-newrecommend-img">
+                            <img src="img/home/hot-pic.png" alt="">
+                        </div>
+                        <div class="weui_media_bd">
+                            <h4 class="weui_media_title">汽车-个人车险</h4>
+                            <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                            <div class="weui_media_price">
+                                <div class="newRecommend_price">$79.00</div>
+                                <div class="newRecommend_sales">销量2000</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0);" class="weui_media_box weui_media_appmsg">
+                        <div class="weui_media_hd" id="home-newrecommend-img">
+                            <img src="img/home/hot-pic.png" alt="">
+                        </div>
+                        <div class="weui_media_bd">
+                            <h4 class="weui_media_title">汽车-个人车险</h4>
+                            <p class="weui_media_desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                            <div class="weui_media_price">
+                                <div class="newRecommend_price">$79.00</div>
+                                <div class="newRecommend_sales">销量2000</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <a class="weui_panel_ft" href="javascript:void(0);">查看更多</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="weui_tabbar">
+        <a href="javascript:;" class="weui_tabbar_item weui_bar_item_on">
+            <div class="weui_tabbar_icon">
+                <img src="img/home/tabar-home2.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">首页</p>
+        </a>
+        <a href="javascript:;" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                <img src="img/home/tabar-buy1.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">我的买手</p>
+        </a>
+        <a href="javascript:;" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                <img src="img/home/tabar-shop1.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">购物车</p>
+        </a>
+        <a href="javascript:;" class="weui_tabbar_item">
+            <div class="weui_tabbar_icon">
+                <img src="img/home/tabar-mine1.png" alt="">
+            </div>
+            <p class="weui_tabbar_label">我的</p>
+        </a>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    //轮播图
+    var mySwiper = new Swiper('.swiper-container', {
+        speed: 400,
+        spaceBetween: 100,
+        autoplay: 2000,
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        loop:true,
+    });
+
+    //轮播2
+    var swiper = new Swiper('.swiper-container-hot', {
+//        pagination: '.swiper-pagination',
+        slidesPerView: 3,
+        paginationClickable: true,
+        spaceBetween: 30
+    });
+
+</script>
+
+</html>

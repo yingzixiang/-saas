@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>成为创客</title>
+	</head>
+	<body>
+		<script>
+			$.ajax({
+				type:"get",
+				url:"http://www.izerosoft.com.cn/code/getCode?code="+window.location.href.split(/code=/)[1].split(/&/)[0],
+				async:true,
+				success:function(res){
+					sessionStorage.setItem("openid", res.openid);
+					window.location.href="";
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,173 @@
+.line {
+	width: 100%;
+	height: 1px !important;
+	background: linear-gradient(to left, #e3e3e3 0%, #c8c8c8 50%, #e3e3e3 100%);
+}
+*{
+	color:#383838;
+}
+.lineChange {
+	width: 100%;
+	height: 1px !important;
+	background: linear-gradient(to left, #fff 0%, #000 50%, #fff 100%);
+}
+#logo{
+	margin: 15px 0;
+	height:90px;
+	border-bottom:1px solid #C8C8C8;
+	background: linear-gradient(to bottom,#f8f8f8 0%, #e8e8e8 100%);
+}
+.logoimg{
+	display: inline-block;
+	width:50px;
+	height:50px;
+	margin: 20px;
+	border-radius: 3px;
+	overflow: hidden;
+	box-shadow: 1px 1px 1px #989898;
+}
+.logoimg img{
+	width:100%;
+	height:100%;
+}
+#logo p:last-child{
+	display: inline-block;
+	width:calc(100% - 100px);
+	line-height: 90px;
+	vertical-align: top;
+	padding-left: 10%;
+}
+#acttime{
+	
+	border-bottom:1px solid #C8C8C8;
+	height:90px;
+	padding:0 10px;
+	background: linear-gradient(to bottom,#f8f8f8 0%, #e8e8e8 100%);
+}
+#acttime li{
+	line-height:44px;
+	color:#989898;
+}
+#acttime li p{
+	display: inline-block;
+	width:calc(50% - 20px);
+	line-height:44px;
+	color:#989898;
+}
+#activememlist{
+	padding: 10px;
+}
+.Memlist{
+	line-height: 50px;
+	height:50px;
+}
+.Memlist p:first-child{
+	width:38px;
+	height:38px;
+	margin:9px 10px 3px 20px;
+	background: url(../paotuan/img/012_03.png) no-repeat;
+	background-size: 100% 100%; display: inline-block;
+}
+.Memlist p img{
+	width: 32px;
+	height:32px;
+	border:2px solid #3C3D3D;
+	border-radius: 50%;
+	margin:5px 3px;
+}
+.memName{
+	display: inline-block;
+	width:auto;
+	background: url(../paotuan/img/020_03.png) no-repeat 15px 10px;
+	background-size: 30px 30px;
+	vertical-align:top;
+	padding-left:60px;
+}
+.feebuttoned,.feebuttoning{
+	float:right;
+	font-style: italic;
+	width:70px;
+	border:1px solid #C8C8C8;
+	padding: 5px 0;
+	border-radius: 4px;
+	margin-top: 10px;
+}
+.feebuttoned{
+	background: linear-gradient(to top, #f8f8f8 0%, #e8e8e8 100%);
+	color:#989898;
+}
+.feebuttoning{
+	background: linear-gradient(to bottom, #f8f8f8 0%, #e8e8e8 100%);
+	color:#686868;
+}
+.modal{
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,0,0,.3);
+}
+.modal-dialog{
+	width:90%;
+	margin-left:5%;
+	background: #E9E9E9;
+	border-radius: 3px;
+	margin-top:30%;
+}
+.memberinfor{
+	padding:0 5%;
+}
+.lilist{
+	height: 40px;
+	
+}
+.lilist img{
+	height:30px;
+	margin-top:5px;
+	margin-right:5px;
+	width:35px;
+}
+.lilist p,.lilist p span{
+	display: inline-block;
+	line-height:40px;
+	color:#686868;
+	vertical-align: top;
+}
+#chose{
+	height:50px;
+}
+#chose img{
+	height:36px;
+	width: 36px;
+	float:right;
+	margin-top:7px;
+}
+.Ischange{
+	height:120px;
+	padding: 5%;
+	
+}
+.modal-dialog_1{
+	width:70%;
+	margin-left:15%;
+	background: #E9E9E9;
+	border-radius: 5px;
+	margin-top:40%;
+}
+
+.Ischange p{
+	line-height:50px;
+	color:#000000;
+	text-align: center;
+}
+#chooseFee{
+	line-height:50px;
+	border-top:1px solid #E3E3E3;
+}
+#chooseFee a{
+	display: inline-block;
+	width: 49%;
+	color: #007AFF;
+	text-decoration: none;
+}

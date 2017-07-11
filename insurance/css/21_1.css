@@ -1,0 +1,335 @@
+html{
+	height:auto;
+}
+#activeName{
+	height:80px;
+	border-top:1px solid #080808;
+	border-bottom: 1px solid #080808;
+	margin-top:15px;
+	background:linear-gradient(to bottom,#282828 0%,#343434 100%) no-repeat;
+}
+#activeName p{
+	display: inline-block;
+	height:50px;
+	width: 50px;
+	margin:15px;
+	border-radius: 3px;
+	box-shadow: 1px 1px 1px #000000;
+	overflow: hidden;
+}
+#activeName p img{
+	width:100%;
+	height:100%;
+}
+#activeName h3{
+	line-height: 80px;
+	display: inline-block;
+	width:calc(100% - 85px);
+	vertical-align: top;
+	padding-left: 10%;
+}
+#activeList,#activeNum,#activeIndouce,#fee{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-top: 1px solid #080808;
+	border-bottom: 1px solid #080808;
+	background:linear-gradient(to bottom,#282828 0%,#343434 100%) no-repeat;
+}
+.liTime{
+	height: 40px;	
+}
+.line {
+	width: 100%;
+	height: 1px !important;
+	background: linear-gradient(to left, #323232 0%, #000 50%, #323232 100%);
+}
+#activeList .liTime p{
+	display: inline-block;
+	width:25%;
+	height:22px;
+	margin: 9px;
+	text-align: left;
+	min-width: 50px;
+}
+.liTime p img{
+	height:22px;
+}
+.liTime span{
+	line-height: 40px;
+	vertical-align: top;
+}
+.liTime h3{
+	display: inline-block;
+	width:49%;
+	text-align: left;
+	line-height: 40px;
+	color:#989898;
+	padding-left: 10px;
+}
+.liTime div{
+	line-height: 40px;
+	color:#989898;
+	padding-left: 10px;
+}
+#activeIndouce{
+	height: 80px;
+	color:#989898;
+	padding-left: 10px;
+	padding-right: 10px;
+	line-height: 40px;
+}
+#activeIndouce span,#fee span{
+	display: inline-block;
+	color:#989898;	
+	width: 75px;
+}
+#activeIndouce p{
+	display: inline-block;
+	width:calc(100% - 80px);
+	height:80px;
+	word-wrap:break-word;
+	vertical-align: top;
+	overflow: hidden;
+}
+#fee{
+	padding-left: 10px;
+	padding-right: 10px;
+	line-height: 40px;
+}
+#fee p{
+	display: inline-block;
+	width: calc(100% - 80px);
+	padding-left: 20%;
+}
+#fee p img{
+	width:20px;
+}
+#fee p span{
+	font-size: 1.2em;
+	color: #F8F8F8;
+	font-family: "微软雅黑";
+	font-weight: bold;
+}
+#footer{
+	display: inline-block;
+	margin-top:30px;
+	width: 100%;
+}
+#footer button{
+	width: 100%;
+	background:linear-gradient(to bottom,#FD885E 0%,#F25F6E 100%);
+	line-height:40px;
+	font-size: 15px;
+	color:#9B1339;
+	border:none;
+	border-radius: 3px;
+}
+.modal {
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background: rgba(0, 0, 0, 0.5);
+	align-content: center;
+	display: none;
+	z-index: 4;
+	width:100%
+}
+
+.modal-dialog {
+	height: 100%;
+}
+
+.modal-content {
+	height: 30%;
+}
+
+.modal-content div {
+	height: 120px;
+}
+
+.modal-content>p {
+	height: 30%;
+}
+
+.modal-content div,
+.modal-content>p {
+	background: #fff;
+	border-radius: 10px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.modal-content div>p {
+	height: 50%;
+	line-height: 100%;
+}
+
+.modal-content div>p:first-child {
+	border-bottom: 1px solid #ddd;
+}
+
+.modal-content p {
+	color: #027BFF;
+	font-size: 15px;
+	font-weight: 750;
+	padding-top: 8%;
+}
+
+
+/*创建成功*/
+
+.GroupSucc {
+	width: 70%;
+	margin-left: 15%;
+	border-radius: 10px;
+	margin-top: 70%;
+}
+.GroupSucc div {
+	border-bottom: 1px solid #ddd;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	padding-top: 10%;
+}
+
+.GroupSucc div p {
+	margin: 0;
+	padding: 0;
+	height: 30%;
+	margin-top: 5px;
+	border: none;
+	font-size: 13px;
+	color: #000;
+}
+
+.GroupSucc>p {
+	margin: 0;
+	padding: 0;
+	padding-top: 5%;
+}
+
+.GroupSucc>p a {
+	color: #007AFF;
+	text-decoration: none;
+}
+
+
+/*GroupErr*/
+
+.GroupErr {
+	width: 70%;
+	margin-left: 15%;
+	border-radius: 10px;
+	margin-top: 50%;
+}
+
+.GroupErr>P:first-child {
+	line-height: 60px;
+	padding-top: 0;
+	color: #000;
+}
+
+.GroupErr>form{
+	height: 60px;
+	padding: 0;
+	margin: 0;
+}
+
+.GroupErr>form>a,.GroupErr>form button {
+	display: inline-block;
+	width: 45%;
+	text-decoration: none;
+	text-align: center;
+	height: 100%;
+	color: #007AFF;
+	background: #FFFEFF;
+	border: none;
+	outline: none;
+}
+.GroupErr>form>a{
+	vertical-align:bottom;
+	line-height: 4;
+}
+.GroupErr>form button a{
+	color: #007AFF;
+}
+.GroupErr>form>button:last-child{
+	border-left: 1px solid #ddd;
+}
+#information{
+	position: fixed;
+	top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+.infor_dialog{
+	height:300px;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 30%;
+	background: url(../img/p11.png) no-repeat;
+	background-size: 100% 100%;
+}
+#inp1,#inp2,#inp3 {
+	height: 25px;
+	margin: 35px 10px 0 10px;
+	border: none;
+	background-color: transparent;
+	padding-left: 15%;
+	width: calc(100% - 25px);
+	outline: none;
+	font-size: 13px;
+	color: #383838;
+}
+#t1 {
+	line-height: 35px;
+	padding-left: 10px;
+}
+#t1 span:first-child {
+	font-family: 迷你简汉真广标;
+	color: #383838;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#t1 span:last-child {
+	font-family: 迷你简汉真广标;
+	color: #ff0048;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#t2 {
+	padding-left: 10px;
+	line-height: 30px;
+	color: #989898;
+}
+#t2 b{
+	font-size: 3vw;
+}
+#t3{
+	position: relative;
+	width: 100%;
+	height:40px;
+}
+#ok {
+	position: absolute;
+	top:15px;
+	left: 5px;
+	width: 30px;
+	height: 30px;
+	z-index: 6;
+}
+
+#cha {
+	position: absolute;
+	top:15px;
+	right: 5px;
+	width: 30px;
+	height: 30px;
+	z-index: 6;
+}

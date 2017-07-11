@@ -1,0 +1,53 @@
+﻿* {
+	margin: 0 auto;
+	padding: 0;
+	font-family: "microsoft yahei";
+	font-weight: lighter;
+	font-size: 15px;
+	color:#d7d7d7;
+}
+font-face {
+	font-family: 胡晓波男人帮简体; 
+	src: url("../font/胡晓波男人帮简体.ttf"); 
+}
+font-face {
+	font-family: 迷你简汉真广标; 
+	src: url("../font/迷你简汉真广标.ttf"); 
+}
+html{
+	height:100%;
+	min-width: 300px;
+	 
+	 min-height: 500px;
+	 
+	}
+body {
+	 margin:0 auto; 
+	 padding:0; 
+	 background: linear-gradient(to top, #f8f8f8 0%, #e8e8e8 100%) no-repeat fixed;
+	 width:100%;
+	 height: 100%;
+	 min-width: 300px;
+	 
+	 min-height: 500px;
+	 
+	 }
+div,form,img,ul,ol,li,dl,dt,dd,input,h1,h2,h3,h4,h5,h6,p{
+	margin:0; padding:0; border:0; 
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	}
+li,dl{
+	list-style-type:none;
+	}
+a:hover {
+ text-decoration:none;}
+ .active{
+ 	display: none;
+ }
+.lf{
+	float:left;
+}
+.rt{
+	float:right;
+}

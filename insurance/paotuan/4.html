@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title>跑量打卡</title>
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="css/4.css" />
+		<script type="text/javascript" src="../js/jquery-2.2.4.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	</head>
+
+	<body>
+		<div id="div1">
+			<div id="bg">
+				<p id="HeadPortrait"><img src="img/p14.png" /></p>
+				<p id="name">小小吧</p>
+			</div>
+			<p id="target" onclick="setting()"><span id="s1">本月目标跑量还没有设置，点我设置</span><span id="s2">,已完成0KM</span></p>
+			<input id="male" type="number" placeholder="0.00" /><span>KM</span>
+			<p id="pic"><img onclick="chooseImage()" src="img/02_15.png" /><span>有图有真相</span></p>
+
+			<input id="btn" type="button" value="保存" onclick="btn()" />
+
+		</div>
+
+		<div id="bg2"></div>
+		<div id="div2">
+			<p id="div2_p">请输入本月目标跑量</p>
+			<input id="div2_in" type="number" placeholder="请输入本月目标跑量" /></br>
+			<p id="okorno"><button id="div2_cancel"  onclick="div2_cancel()">取消</button>
+			<button id="div2_OK" onclick="div2_OK()">确定</button></p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var toatal = 0;
+		
+		function setting() {
+			document.getElementById("bg2").style.display = "block";
+			document.getElementById("div2").style.display = "block";
+		}
+
+		function div2_cancel() {
+			document.getElementById("bg2").style.display = "none";
+			document.getElementById("div2").style.display = "none";
+		}
+
+		function div2_OK() {
+			var memberId=localStorage.getItem("memberId");
+			var p = document.getElementById("div2_in").value;
+			$.ajax({
+				type:"get",
+				url:"http://xb.guegg.com/runmile/target",
+				async:true,
+				data:{
+					memberId:memberId,
+					target:p
+				},
+				success:function(res){
+					console.log("月跑量设置");
+					console.log(res);
+					if(res.result==1){
+						document.getElementById("bg2").style.display = "none";
+						document.getElementById("div2").style.display = "none";
+						document.getElementById("s1").innerHTML = "本月目标跑量" + p + "KM";
+						document.getElementById("s2").style.display = "block";
+					}else{
+						alert("设置失败！");
+					}
+				}
+			});
+		}
+		function btn() {
+			var m = document.getElementById("male").value;
+			toatal = toatal + m;
+			document.getElementById("s2").innerHTML = "已完成" + toatal + "kM";
+			window.location.href="5.html?m="+(m==""?0:m);
+			console.log(m);
+		}
+	</script>
+	<script>
+		$(function(){
+			var memberId=localStorage.getItem("memberId");
+			var openid=localStorage.getItem("openid");
+			$.ajax({
+			type:"get",
+			url:"http://xb.guegg.com/runmile/mileinfo?memberId="+memberId,
+			async:true,
+			success:function(res){
+				console.log("获取跑量打卡信息");
+				console.log(res);
+				if(res.target=="null"){
+					
+				}else{
+					document.getElementById("s1").innerHTML = "本月目标跑量"  +res.target.miletargetTarmileage+ "KM,";
+					document.getElementById("s2").innerHTML = "已完成"+  res.sum+ "kM";
+					document.getElementById("s2").style.display = "block";
+					if(parseFloat(res.target.miletargetTarmileage)<=parseFloat(res.sum)){
+						$("#s1")[0].style.color="green";
+						$("#s2")[0].style.color="green";
+					}
+				}
+				}
+			});
+			$.ajax({
+			type:"get",
+			url:"http://xb.guegg.com/member/detail",
+			data:{
+				openid:openid,
+				memberId:memberId
+			},
+			async:true,
+			success:function(obj){
+				console.log(obj);
+				$("#HeadPortrait img").attr("src",obj.img);
+				$("#name").html(obj.nickname);
+			},
+		});
+	});	
+	//通过ready接口处理成功验证
+		wx.ready(function(){
+			// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后
+		});
+		
+		wx.error(function(res){
+		    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+
+		});
+		console.log(window.location.href.split(/\?/)[0]);
+		$(function(){
+			$.ajax({
+				
+				type:"get",
+				
+				url:"http://xb.guegg.com/code/getAccessToken",
+				
+				async:true,
+				success:function(res){
+					accessToken=res.accessToken;
+					$.ajax({
+		    			type:"post",
+		    			url:"http://xb.guegg.com/code/sign",
+						dataType:"json",
+						data:{
+							url:window.location.href.split('#')[0],
+							jsapi_ticket:res.ticket
+						},
+			    		success:function(obj){
+						console.log(obj);
+				    		wx.config({
+							    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+							    appId: obj.hashMap.appId, // 必填，公众号的唯一标识
+							    timestamp: obj.hashMap.timestamp,// 必填，生成签名的时间戳
+							    nonceStr: obj.hashMap.nonceStr, // 必填，生成签名的随机串
+							    signature: obj.hashMap.signature,// 必填，签名，见附录1
+							    jsApiList: [ 'closeWindow','chooseImage','uploadImage','downloadImage']  // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+							});
+				    	}
+			    	});
+				}
+			});
+			
+		});
+		
+		var chooseImage = function() {
+			wx.chooseImage({
+
+			    count: 1, // 默认9
+			
+			    sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+			
+			    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+			
+			    success: function (res) {
+
+			        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+			        
+			        var localId = localIds[0];
+			        $("#pic img").attr("src",localId);
+			        //上传图片
+			        wx.uploadImage({
+					    localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+					    isShowProgressTips: 1, // 默认为1，显示进度提示
+					    success: function (res) {
+					        var serverId = res.serverId; // 返回图片的服务器端ID
+					        
+						console.log(res);
+						
+					    }
+					});
+			    }
+			});
+		}		
+		
+		
+
+
+	</script>
+</html>

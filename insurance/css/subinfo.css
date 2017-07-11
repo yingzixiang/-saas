@@ -1,0 +1,122 @@
+/*遮罩层*/
+.shade{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.55);
+    display:none;
+    /*display: block;*/
+    z-index: 3;
+}
+
+/*弹出层*/
+.shade-select{
+    background-color: white;
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    bottom:0;
+    -webkit-transform: translateY(100%);
+    -moz-transform:translateY(100%);
+    transform: translateY(100%);
+    transition: 0.6s;
+    -webkit-transition: 0.6s;
+    -o-transition: 0.6s;
+    -moz-transition: 0.6s;
+}
+
+.shade-select-box{
+    padding: 10px;
+    min-height: 30vh;
+    padding-bottom: 20px;
+}
+.shade-select-box p{
+    margin-top: 10px;
+}
+.shade-select-box em{
+   color: black;
+    font-weight: normal;
+}
+.shade-select-title{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.shade-select-title span{
+    margin-left: 10px;
+    color: black;
+    font-weight: normal;
+}
+.close-shade{
+    position: absolute;
+    right: 10px;
+}
+.shade-select-body{
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+.shade-select-btn{
+    /*height: 1.7rem;*/
+    line-height: 1.2rem;
+    background-color: #eee;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.25rem;
+    border-radius: 10px;
+    color: #666;
+    font-weight: normal;
+}
+.shade-select-body input{
+    position: absolute;
+    top:-50px!important;
+    left: -50px!important;
+}
+.shade-select-body input:checked+label{
+    /*height: 1.7rem;*/
+    line-height: 1.2rem;
+    background-color: #df7a0a;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.25rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: normal;
+    box-shadow: 3px 3px 6px #e0e0e0;
+}
+.shade-select-btn-choose{
+    /*height: 1.7rem;*/
+    line-height: 1.2rem;
+    background-color: #df7a0a;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.25rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: normal;
+    box-shadow: 3px 3px 6px #e0e0e0;
+}
+.shade-select-sub{
+    height: 3rem;
+    background-color: #df7a0a;
+    line-height: 3rem;
+    text-align: center;
+    font:normal 1.2rem/3rem "微软雅黑";
+}
+/*按钮样式*/
+.mine-btn{
+    background-color: #868686;
+    width: 50%;
+    border-radius: 1rem;
+}
+/*上传图片*/
+.weui_uploader_bd{
+    display: flex;
+
+}
+#img0{
+   display: none;
+}

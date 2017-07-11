@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title>我的活动详情</title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/70.css" />
+		<script src="js/jquery-2.2.4.js"></script>
+	</head>
+
+	<body>
+		<div id="logo">
+			<p class="logoimg"><img src="paotuan/img/p14.png" alt="" /></p>
+			<p></p>
+		</div>
+		<ul id="acttime">
+			<li>
+				<p>已报名： <span></span></p>
+				<p>剩余人数： <span></span></p>
+
+			</li>
+			<li class="line"></li>
+			<li>
+				报名截止时间：<span></span>
+			</li>
+		</ul>
+		<ul id="activememlist">
+			<!--li style="color:#989898;font-size: 13px;margin-bottom: 10px;">报名成员列表：</li>
+			<li class='Memlist'>
+				<p><img src="paotuan/img/p14.png" alt="" /></p>
+				<p class="memName"><span>用户名</span></p>
+				<button class="feebuttoned">已支付</button>
+			</li>
+			<li class="line"></li>
+			<li class='Memlist'>
+				<p><img src="paotuan/img/p14.png" alt="" /></p>
+				<p class="memName"><span>用户名</span></p>
+				<button class="feebuttoning">未支付</button>
+			</li>
+			<li class="line"></li-->
+		</ul>
+		<div class="modal infor active">
+			<div class="modal-dialog">
+				<div class="memberinfor">
+					<ul>
+						<li style="font-family:'迷你简汉真广标';line-height:40px;color:#383838;font-size:16px;font-weight: bold;">用户信息：</li>
+						<li class="lineChange"></li>
+						<li class="lilist">
+							<img src="img/images/060_03.png" alt="" />
+							<p>姓 名：<span></span></p>
+						</li>
+						<li class="lineChange"></li>
+						<li class="lilist">
+							<img src="img/images/060_06.png" alt="" />
+							<p>电 话：<span></span></p>
+						</li>
+						<li class="lineChange"></li>
+						<li class="lilist">
+							<img src="img/images/060_09.png" alt="" />
+							<p>身份证：<span></span></p>
+						</li>
+						<li class="lineChange"></li>
+						<li id="chose"><img onclick="(function(){$('.modal').hide()})()" src="img/run60/79_09.png" alt="" /></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="modal changeFee active">
+			<div class="modal-dialog_1">
+				<div class="Ischange">
+					<p>确认该用户已支付吗？</p>
+					<p id="chooseFee">
+						<a>确定</a>
+						<a onclick="(function(){$('.modal').hide()})()">取消</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(function() {
+			var activityId = window.location.href.split(/activityId=/)[1].split(/&/)[0];
+			$.ajax({
+				url: "http://www.izerosoft.com.cn/activity/myActivityDetails",
+				type: "get",
+				data: {
+					activityId: activityId
+				},
+				success: function(obj) {
+					console.log(obj);
+					if(obj.result == 1) {
+						var endtime = new Date(obj.aicivity.startTime);
+						endtime = endtime.getFullYear() + "年" + (endtime.getMonth() + 1) + "月" + endtime.getDate() + "日结束";
+						$(".logoimg img").attr("src", obj.aicivity.activityLogo.split(/,/)[0]);
+						$("#logo p:eq(1)").html(obj.aicivity.activityName);
+						if(parseInt(obj.remain)+parseInt(obj.successnum)==0){
+							$("#acttime span:eq(1)").html("不限");
+						}else{
+							$("#acttime span:eq(1)").html(obj.remain);
+						}
+						$("#acttime span:eq(0)").html(obj.successnum);
+						$("#acttime span:eq(2)").html(endtime);
+					} else {
+						
+					}
+				},
+				eror: function() {
+					alert("网络出错！");
+				}
+			});
+			$.ajax({
+				url: "http://www.izerosoft.com.cn/activity/actMemList",
+				type: "get",
+				data: {
+					activityId: activityId
+				},
+				success: function(obj) {
+					console.log(obj);
+					if(obj.result == 1) {
+						for(var i = 0; i < obj.memblist.length; i++) {
+							$("#activememlist").append("<li class='Memlist' alt='"+obj.memblist[i].memberId+"'><p><img src='" +
+								obj.memblist[i].memberPhoto +
+								"' alt='logo' /></p><p class='memName'><span>" +
+								obj.memblist[i].memberName +
+								"</span></p><button alt='" + obj.memblist[i].memberId + "'" +
+								(obj.activitieList[i].enrollmentPaystatus == 0 ? "class='feebuttoning'>未支付" : "class='feebuttoned'>已支付") +
+								"</button></li><li class='line'></li>");
+						}
+					} else {
+
+					}
+					listinfor(obj, activityId);
+				},
+				eror: function() {
+					alert("网络出错！");
+				}
+			});
+		});
+
+		function listinfor(obj, activityId) {
+
+			$(".feebuttoning").click(function() {
+				var memberId = $(this).attr("alt");
+				$(".changeFee").show();
+				$("#chooseFee a:eq(0)").click(function() {
+					$.ajax({
+						type: "get",
+						url: "http://www.izerosoft.com.cn/activity/updatePay",
+						async: true,
+						data: {
+							activityId: activityId,
+							memberId: memberId
+						},
+						success: function(res) {
+							console.log(res);
+							window.location.reload();
+						}
+					});
+				});
+
+				return false;
+			});
+			$(".feebuttoned").click(function() {
+				return false;
+			});
+			$("#activememlist .Memlist").click(function() {
+				/*$(".infor").show();
+				var i = (parseInt($(this).index())) / 2;
+				$('.lilist:eq(0) p span').html(obj.memblist[i].memberNickame);
+				$('.lilist:eq(1) p span').html(obj.memblist[i].memberMobile);
+				$('.lilist:eq(2) p span').html(obj.memblist[i].memberIdcard);*/
+				window.location.href="70_list.html?memberId="+$(this).attr("alt")+"&activityId="+activityId;
+			});
+		}
+	</script>
+
+</html>

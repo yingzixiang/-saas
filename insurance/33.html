@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<script src="js/jquery-2.2.4.js"></script>
+		<link rel="stylesheet" type="text/css" href="js/weui/lib/weui.css" />
+		<link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/register.css" />
+		<script src="js/weui/js/jquery-weui.js"></script>
+		<title>我的</title>
+		<style>
+			#my_base {
+				position: relative;
+			}
+			
+			.bg_img {
+				width: 100%;
+			}
+			
+			.bg_img img {
+				width: 100%;
+			}
+			
+			.my1,
+			.my2,
+			.my3 {
+				position: absolute;
+				display: inline-block;
+			}
+			
+			.my1 {
+				width: 91px;
+				height: 91px;
+				top: 2.5em;
+				left: 2em;
+				background: url(img/indexme/030_07.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			
+			.my1 img {
+				width: 74px;
+				height: 74px;
+				border-radius: 50%;
+				overflow: hidden;
+				margin: 14px 9px 0 9px;
+			}
+			
+			.my2 {
+				top: 5em;
+				left: 40%;
+				width: 150px;
+				
+			}
+			
+			.my3 img {
+				width: 60%;
+			}
+			
+			.my2 li {
+				color: #383838;
+				text-align: center;
+				margin: 5px 0;
+			}
+			
+			.my3 {
+				top: 2em;
+				left: 10em
+			}
+			
+			.line {
+				height: 1px;
+				width: 100%;
+				background: linear-gradient(to left, rgba(152, 152, 152, 0) 0%, #989898 50%, rgba(152, 152, 152, 0) 100%);
+			}
+			
+			.my_list {
+				padding: 0 15px;
+				margin-bottom: 3px;
+			}
+			
+			.my_list div {
+				display: inline-block;
+				height: 35px;
+				margin: 2px auto;
+			}
+			
+			.my_list div img {
+				height: 80%;
+			}
+			
+			.my_list a {
+				width: 100%;
+				height: 100%;
+				display: inline-block;
+			}
+			
+			.line_1 {
+				height: 1px;
+				width: 100%;
+				background: linear-gradient(to left, #f6f6f6 0%, #c8c8c8 50%, #f6f6f6 100%);
+			}
+			
+			.list_name {
+				text-align: center;
+				width: calc(100% - 45px);
+				width: -webkit-calc(100% - 45px);
+				width: -moz-calc(100% - 45px);
+			}
+			
+			.list_name1 {
+				height: 60%;
+				color: #686868;
+				font-size: 15px;
+			}
+			
+			.list_name2 {
+				color: #c8c8c8;
+				font-style: italic;
+				font-size: 12px;
+			}
+			
+			#SignIn {
+				display: inline-block;
+				width: 60px;
+				position: fixed;
+				top: 45%;
+				right: 0;
+				background: url('img/run33/015_03.png') no-repeat;
+				background-size: 100% 100%;
+				height: 35px;
+				border: none;
+				border-radius: 3px;
+				outline: none
+			}
+			
+			.signadd {
+				position: relative;
+				font-weight: bold;
+				left: 0px;
+				color: #D13444;
+				font-size: 18px;
+				opacity: 0;
+				animation: signmove 1s linear;
+				-moz-animation: signmove 1s linear;
+				-webkit-animation: signmove 1s linear;
+			}
+			
+			@keyframes signmove {
+				0% {
+					display: block;
+					opacity: 0;
+					top: -20px;
+				}
+				50% {
+					opacity: 0.8;
+					top: -35px;
+				}
+				90% {
+					opacity: 1;
+					top: -40px;
+				}
+				100% {
+					opacity: 0;
+					top: -45px;
+					display: none;
+				}
+			}
+			
+			@-webkit-keyframes signmove {
+				0% {
+					display: block;
+					opacity: 0;
+					top: -20px;
+				}
+				50% {
+					opacity: 0.8;
+					top: -35px;
+				}
+				90% {
+					opacity: 1;
+					top: -40px;
+				}
+				100% {
+					opacity: 0;
+					top: -45px;
+					display: none;
+				}
+			}
+			.color-primary {
+				color: #383838
+			}
+			.pm{
+				vertical-align: super;
+				height:25px !important;
+			}
+			.pm p{
+				height:100%
+			}
+		</style>
+		<script type="text/javascript">
+			$.showLoading("页面加载中");
+		</script>
+	</head>
+
+	<body>
+		<header id="my_base">
+			<div class="bg_img">
+				<img src="img/indexme/030_02.jpg" alt="" />
+			</div>
+			<div class="my1">
+				<img src="paotuan/img/p14.png" alt="" />
+			</div>
+			<ul class="my2">
+				<li class="my2_1">用户</li>
+				<li class="line"></li>
+				<li class="my2_2">我是创客</li>
+				<li class="line"></li>
+				
+			</ul>
+			<div class="my3">
+				<img src="img/indexme/030_03.png" alt="" />
+			</div>
+		</header>
+		<section>
+			<ul>
+				<li class="my_list">
+					<a href="34.html">
+						<div><img src="img/indexme/030_11.png" /></div>
+						<div class="list_name pm">
+							<p class="list_name1">我的团队</p>
+							
+						</div>
+					</a>
+				</li>
+				<li class="line_1"></li>
+				<li class="my_list">
+					<a href="60.html">
+						<div><img src="img/indexme/030_14.png" /></div>
+						<div class="list_name">
+							<p class="list_name1">我的活动</p>
+							
+						</div>
+					</a>
+				</li>
+				
+				<li class="line_1"></li>
+				<li class="my_list">
+					<a href="84.html">
+						<div><img src="img/indexme/030_20.png" /></div>
+						<div class="list_name pm">
+							<p class="list_name1">我的积分</p>
+						</div>
+					</a>
+				</li>
+				<li class="line_1"></li>
+				<li class="my_list managementCenter active">
+					<a onclick="managementCenter()">
+						<div><img src="img/indexme/030_24.png" /></div>
+						<div class="list_name pm">
+							<p class="list_name1">管理中心</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</section>
+		<button id="SignIn" class="" onclick="signIn()"><b class="active">+5</b></button>
+		<div class="modalReg active">
+			<!--用户登录验证-->
+			<div class="modal-dialog_">
+				<ul class="register">
+					<li style="height: 25%;">
+						<h1>亲爱的，<span>用户</span></h1></li>
+					<li style="height: 25%;">
+						<p>请填写一下信息，以便正常使用所有功能</p>
+						<div style="margin-top:3%;height:1px;background: linear-gradient(to left,#DDDDDD 0%,#2E2E2E 50%,#DDDDDD 100%);"></div>
+					</li>
+					<li style="height: 40%;">
+						<p style="padding-bottom: 3%;">联系电话：</p>
+						<div class="contentPhone">
+							<input type="text" />
+							<button class="yanzhenma">发送
+							</button>
+						</div>
+					</li>
+					<li class="writeyanzhengma active" style="height: 12%;margin-top: 10%;">
+						验证码：<input type="text" />
+					</li>
+					<li class="close active">
+						<a class="lf"> <img src="img/run60/79_07.png" /> </a>
+						<a class="rt"> <img src="img/run60/79_09.png" /> </a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</body>
+	<script>
+		$(function(){
+			var openid = sessionStorage.getItem("openid");
+			var memberId = sessionStorage.getItem("memberId");
+			var rungroup_coded=sessionStorage.getItem("rungroup_code");
+			var rungroup_code=window.location.href.split(/code=/)[1].split(/&/)[0];
+			if(rungroup_code!=rungroup_coded) {
+				register(rungroup_code);
+			} else {
+				member_infor();
+				SignIn();
+			}
+			$("#pushCard").attr("href","punchCard.html?memberId="+memberId);
+		});		
+		function register(rungroup_code){//提交code返回openid
+			$.ajax({
+				type: "get",
+				url: "http://www.izerosoft.com.cn/code/getCode?code=" + rungroup_code,
+				async: true,
+				success: function(res) {
+					sessionStorage.setItem("rungroup_code",rungroup_code);
+					sessionStorage.setItem("openid", res.openid);
+					if(res.result == 1) {
+						$(".modalReg").hide();
+						sessionStorage.setItem("memberId", res.memberId);
+						member_infor();
+						SignIn();
+					} else if(res.result == 0) {
+						$(".modalReg").show();
+						validation();
+					}
+				},
+				error: function() {
+					$(".modalReg").hide();
+				}
+			});
+		}
+		//弹出验证信息
+		function validation() {
+			$(".yanzhenma").click(function(e) {
+				e.preventDefault();
+				var memberMobile = $(".contentPhone input").val();
+				if(/^1[3|4|5|7|8]\d{9}$/.test(memberMobile)) {
+					$.ajax({
+						url: "http://www.izerosoft.com.cn/running/member/register",
+						type: "post",
+						data: {
+							memberMobile: memberMobile,
+							openid: sessionStorage.getItem("openid")
+						},
+						async: true,
+						success: function(obj) {
+							if(obj.result == 1) {
+								memberId = obj.memberId;
+								sessionStorage.setItem("memberId", memberId);
+								$.toast("验证成功");
+								$(".modalReg").hide();
+								$(".weui_toast").fadeOut("slow");
+								member_infor();
+								SignIn();
+							} else {
+								alert("注册失败！");
+							}
+						},
+						error: function() {
+							alert("网络故障");
+						}
+					});
+				} else {
+					alert("手机号码错误");
+					$(".yanzhenma").html("");
+					$(".yanzhenma").html("重发");
+				}
+			});
+		}
+		/*签到点击*/
+		function signIn(){
+			var SignInalt = $("#SignIn").attr("alt");
+			if(SignInalt == 0) {
+				$.ajax({
+					type: "get",
+					url: "http://www.izerosoft.com.cn/integral/sign",
+					data: {
+						memberId: sessionStorage.getItem("memberId")
+					},
+					async: true,
+					success: function(obj) {
+						console.log(obj);
+						if(obj.result == 1) {
+							$("#SignIn b").show().addClass("signadd");
+							$("#SignIn")[0].style.backgroundImage = "url(img/run60/74_03.png)";
+							$("#SignIn").attr("alt", "1");
+						}
+					}
+				});
+			} else if(SignInalt == 1) { //已签到
+
+			}
+		}
+		function member_infor(){//获取用户信息
+			$.ajax({
+				type: "get",
+				url: "http://www.izerosoft.com.cn/member/detail",
+				data: {
+					openid: sessionStorage.getItem("openid"),
+					memberId: sessionStorage.getItem("memberId")
+				},
+				async: true,
+				success: function(obj) {
+					$(".my1 img").attr("src", obj.img);
+					$(".my2_1").html(obj.nickname);
+					if(obj.state==1){
+						$(".my2_2").html("我是创客");
+					}else{
+						
+					}
+				},
+				error: function() {
+
+				}
+			});
+			if((sessionStorage.getItem("openid")=='o_8vawB8hKx7CyWUW2DmrHtZ673g')
+				||(sessionStorage.getItem("openid")=='o_8vawCK-UakpbAe8gG7s4fGBL2w')
+				||(sessionStorage.getItem("openid")=="o_8vawBWObYxJUiQFs0zJgz6sRRc")
+				||(sessionStorage.getItem("openid")=="o_8vawPfAzE0LadP-yWKMp6UGeB8")
+			){
+				//$(".managementCenter").show();
+			}
+			$(".managementCenter").show();
+		}
+		function SignIn(){
+			$.ajax({
+				type: "get",
+				url: "http://www.izerosoft.com.cn/integral/detail?memberId=" + sessionStorage.getItem("memberId"),
+				async: true,
+				success: function(obj) {
+					if(obj.sign == 1) {
+						$("#SignIn")[0].style.backgroundImage = "url(img/run60/74_03.png)";
+						$("#SignIn").attr("alt", "1");
+					} else {
+						$("#SignIn")[0].style.backgroundImage = "url(img/run33/015_03.png)";
+						$("#SignIn").attr("alt", "0");
+					}
+				},
+				error: function() {
+
+				}
+			});
+		}
+		function managementCenter() {
+			$.actions({
+				actions: [{
+					text: "创建团队",
+					className: "color-primary",
+					onClick: function() {
+						window.location.href = "01.html"
+					}
+				}, {
+					text: "团队管理",
+					className: "color-primary",
+					onClick: function() {
+						window.location.href = "34_1.html"
+					}
+				}, {
+					text: "发布活动",
+					className: "color-primary",
+					onClick: function() {
+						window.location.href = "10.html"
+					}
+				}, {
+					text: "活动管理",
+					className: "color-primary",
+					onClick: function() {
+						window.location.href = "60_1.html"
+					}
+				}]
+			});
+		}
+	</script>
+	<script>
+		$.hideLoading();
+	</script>
+</html>

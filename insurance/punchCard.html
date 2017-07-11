@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<script src="js/jquery.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="js/weui/css/jquery-weui.css" />
+		<link rel="stylesheet" href="js/weui/lib/weui.min.css" />
+		<script src="js/weui/js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
+		<title>跑量打卡</title>
+		<style type="text/css">
+			header {
+				background: -webkit-linear-gradient(#fda688 0%, #fc808c 100%);
+				background: -moz-linear-gradient(#fda688 0%, #fc808c 100%);
+				background: -o-linear-gradient(#fda688 0%, #fc808c 100%);
+				background: -webkit-gradient(linear, 0 100%, 0 0, from(#fda688), to(#fc808c));
+				background: linear-gradient(#fda688 0%, #fc808c 100%);
+				height: 30em;
+				width: 100%;
+			}			
+			.bg_img {
+				width: 6.2em;
+				height: 6.2em;
+				margin: 0 auto;
+				margin-top: 2em;
+				background: url(img/indexme/030_07.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			
+			.bg_img img {
+				width: 5em;
+				height: 5em;
+				border-radius: 50%;
+				margin: 1em 0.6em 0.2em 0.6em;
+			}
+			
+			.member_info h2 {
+				text-align: center;
+				margin: 0.5em auto;
+				font-size: 1.3em;
+				color: #fff;
+			}
+			
+			#earthCanvas,
+			#gameCanvas {
+				width: 100%;
+				height: 15em;
+				position: absolute;
+			}
+			
+			.run_span {
+				height: 1.5em;
+				margin-bottom: 1.5em;
+			}
+			
+			.run_span p {
+				height: 100%;
+				display: inline-block;
+				width: 49%;
+				text-align: center;
+				position: relative;
+			}
+			
+			.run_span p img {
+				height: 100%;
+				display: inline-block;
+			}
+			
+			.run_span p span {
+				display: inline-block;
+				line-height: 1.5em;
+				vertical-align: top;
+				font-size: 1em;
+				color: #fff;
+			}
+			
+			#prograss {
+				position: absolute;
+				top: 1em;
+				left: 50%;
+				font-size: 1.5em;
+			}
+			
+			#pushCard {
+				height: 7em;
+				width: 7em;
+				line-height: 1.717;
+				margin: 0 auto;
+				margin-top: 1em;
+				border-radius: 50%;
+				text-align: center;
+				background: -webkit-linear-gradient(#fda688 0%, #fc808c 100%);
+				background: -moz-linear-gradient(#fda688 0%, #fc808c 100%);
+				background: -o-linear-gradient(#fda688 0%, #fc808c 100%);
+				background: -webkit-gradient(linear, 0 0, 0 100%, from(#fda688), to(#fc808c));
+				background: linear-gradient(to bottom, #fda688 0%, #fc808c 100%);
+			}
+			
+			#pushCard div {
+				width: 3em;
+				margin: 0 auto;
+				padding-top: 1em;
+			}
+			
+			#pushCard div img {
+				width: 100%;
+			}
+			
+			#pushCard p {
+				color: #FFF;
+				font-size: 1em;
+			}
+			
+			.weui_dialog {
+				top: 30%;
+				left: 7%
+			}
+			
+			.weui-prompt-input {
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--打卡头部-->
+		<header>
+			<div style="height: 1px;"></div>
+			<div class="member_info">
+				<div class="bg_img">
+					<img src="paotuan/img/p14.png" alt="" />
+				</div>
+				<h2>用户</h2>
+			</div>
+			<div class="run_span">
+				<p id="putTarget">
+					<img src="img/images/card_03.png" alt="" />
+					<span>本月目标</span>
+					<span id="prograss">
+						
+					</span>
+				</p>
+				<p id="checkList">
+					<img src="img/images/card_05.png" alt="" />
+					<span>查看记录</span>
+				</p>
+			</div>
+
+			<div>
+				<canvas id="gameCanvas">
+				    您的浏览器不支持Canvas标签！
+				</canvas>
+				<canvas id="earthCanvas">
+					
+				</canvas>
+			</div>
+		</header>
+		<div id="pushCard" href="javascript:;" class="weui_btn weui_btn_primary">
+			<div><img src="img/images/card_10.png" alt="" /></div>
+			<p>打卡</p>
+		</div>
+	</body>
+	<script>
+		$("#pushCard").click(function() {
+			var myDate = new Date();
+			var today = myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getDate();
+			var progress=$("#prograss").html().split(/km/)[0];
+			var memberId=window.location.href.split(/memberId=/)[1].split(/&/)[0];
+			if(memberId==window.sessionStorage.getItem("memberId")){
+				$.prompt({
+				title: '跑量打卡',
+				text: today,
+				input: '0',
+				empty: false, // 是否允许为空
+				onOK: function(input) {
+					//点击确认
+					$.ajax({
+						type: "get",
+						url: "http://xb.guegg.com/runmile/instantMile",
+						data: {
+							memberId: window.location.href.split(/memberId=/)[1].split(/&/)[0],
+							instantMile: input
+						},
+						async: true,
+						success: function(res) {
+							$.toast("打卡成功");
+							window.location.reload();
+						}
+					});
+				},
+				onCancel: function() {
+					//点击取消
+				}
+			});
+			}
+			
+		});
+		$("#putTarget").click(function() {
+			var memberId=window.location.href.split(/memberId=/)[1].split(/&/)[0];
+			if(memberId==window.sessionStorage.getItem("memberId")){
+				$.prompt("设置本月跑量目标", function(input) {
+				//点击确认后的回调函数
+				console.log(input);
+				$.ajax({ //设置跑量目标
+					type: "get",
+					url: "http://xb.guegg.com/runmile/target",
+					async: true,
+					data: {
+						memberId: window.location.href.split(/memberId=/)[1].split(/&/)[0],
+						target: input
+					},
+					success: function(res) {
+						if(res.result == 1) {
+							$("#prograss").html(input + "km");
+							canvasProgrss(input,0);
+						} else {
+							alert("设置失败！");
+						}
+					}
+				});
+			}, function() {
+				//点击取消后的回调函数
+			});
+			}
+		});
+		
+		function canvasProgrss(miletargetTarmileage, progress) {
+			var canvasWidth = $("#gameCanvas").width();
+			var canvasHeight = $("#gameCanvas").height();
+			var canvas = document.getElementById('gameCanvas'); //画布对象
+			canvas.width = canvasWidth;
+			canvas.height = canvasHeight;
+			var ctx = canvas.getContext('2d');
+			//var progress = 50; 当前已加载的进度
+			var progressPercent=progress*100/miletargetTarmileage;
+			if(miletargetTarmileage<=0){
+				progressPercent=100;
+			};
+			if(progress==0){
+				progressPercent=0;
+			}
+			function canvastxt(progress,progressPercent) {
+				ctx.lineWidth = 10;
+				ctx.strokeStyle = '#fda2a2';
+				ctx.clearRect(0, 0, canvasWidth, canvasHeight); //清除已绘制内容
+				ctx.beginPath();
+				ctx.arc(canvasWidth / 2, canvasHeight / 2, 80, 0, 180);
+				ctx.stroke(); //对路径进行描边 
+				ctx.closePath();
+				var txtday = progress;
+				ctx.font = '60px 微软雅黑';
+				ctx.fillStyle = '#fff';
+				var txtdayWidth = ctx.measureText(txtday).width;
+				ctx.fillText(txtday, canvasWidth / 2 - txtdayWidth / 2, canvasHeight / 2 + 20); //绘制进度提示文字
+				var txtkm = "目标:" + miletargetTarmileage + "km";
+				ctx.font = '1em 微软雅黑';
+				ctx.lineWidth = 1;
+				var txtkmWidth = ctx.measureText(txtkm).width;
+				ctx.fillText(txtkm, canvasWidth / 2 - txtkmWidth / 2, canvasHeight / 3);
+				//写“km”
+				var txtkm = "km";
+				ctx.font = '1em 微软雅黑';
+				ctx.lineWidth = 1;
+				var txtkmWidth = ctx.measureText(txtkm).width;
+				ctx.fillText(txtkm, canvasWidth / 2 - txtkmWidth / 2, 5 * canvasHeight / 7);
+				//划外圆
+				ctx.closePath();
+				ctx.beginPath();
+				ctx.arc(canvasWidth / 2, canvasHeight / 2, 100, 0, 180);
+				ctx.stroke(); //对路径进行描边 
+				ctx.closePath();
+				var d=0;
+				ctx.lineWidth = 10;
+			    if(progressPercent>=100){
+			    	ctx.beginPath();
+			    	ctx.strokeStyle = 'rgb(0,255,0)';
+					ctx.lineWidth = 10;
+					var startAngle = -90 * Math.PI / 180;
+					var endAngle = (-90 + 360 * progressPercent / 100) * Math.PI / 180;
+					ctx.arc(canvasWidth / 2, canvasHeight / 2, 80, startAngle, endAngle);
+					ctx.stroke();
+			    }else{
+			    	var timer = setInterval(function(){
+			        //ctx.clearRect(0,0,canvasWidth,canvasHeight);
+			        ctx.beginPath();
+			        var startAngle = (-90 + 360 * (d++) / 500) * Math.PI / 180;
+					var endAngle = (-90 + 360 * d / 500) * Math.PI / 180;
+			        ctx.arc(canvasWidth / 2, canvasHeight / 2,80,startAngle, endAngle);
+			        ctx.strokeStyle = "rgb("+(255-d*0.5)+",255,"+(255-d*0.5)+")";
+			        ctx.stroke();
+			        console.log(progressPercent);
+			        console.log(d);
+			        if (d > progressPercent*5) {
+			            clearInterval(timer);
+			        }
+			    },10);
+			    }
+				/*ctx.beginPath();
+
+				ctx.strokeStyle = '#d7fa82';
+				ctx.lineWidth = 10;
+				var startAngle = -90 * Math.PI / 180;
+				console.log(progressPercent);
+				var endAngle = (-90 + 360 * progressPercent / 100) * Math.PI / 180;
+				ctx.arc(canvasWidth / 2, canvasHeight / 2, 80, startAngle, endAngle);
+				ctx.stroke(); //对路径进行描边 */
+			}
+			//划旋转小球
+			var canvas1 = document.getElementById('earthCanvas'); //画布对象
+			canvas1.width = canvasWidth;
+			canvas1.height = canvasHeight;
+			var ctx1 = canvas1.getContext('2d');
+			var imgearth = new Image();
+			imgearth.src = "img/images/card_07.png";
+			imgearth.onload = function() {
+				var n = 0;
+				var i = 0;
+				ctx1.translate(canvasWidth / 2, canvasHeight / 2);
+				var timer = setInterval(function() {
+					ctx1.clearRect(0, 0, canvasWidth, canvasHeight);
+					n = n * Math.PI / 100;
+					ctx1.rotate(n++);
+					ctx1.drawImage(imgearth, 95, 0, 10, 10);
+				}, 100);
+				
+			}
+			canvastxt(progress,progressPercent);
+		}
+		$(function() {
+			var memberId = window.location.href.split(/memberId=/)[1].split(/&/)[0];
+			
+			$.ajax({
+				type: "get",
+				url: "http://xb.guegg.com/runmile/mileinfo?memberId=" + memberId,
+				async: true,
+				success: function(res) {
+					console.log(res);
+					$(".bg_img img").attr("src", res.member.memberPhoto);
+					$(".member_info h2").html(res.member.memberName);
+					if(res.target == "null") {
+						canvasProgrss(0,0);
+					} else {
+						canvasProgrss(res.target.miletargetTarmileage, res.sum);
+						$("#prograss").html(res.target.miletargetTarmileage + "km");
+					}
+				}
+			});
+			$("#checkList").click(function(){
+				var memberId=window.location.href.split(/memberId=/)[1].split(/&/)[0];
+			if(memberId==window.sessionStorage.getItem("memberId")){
+				window.location.href="punchCard_1.html"
+			}else{
+				
+			}
+			})
+		});
+	</script>
+
+</html>

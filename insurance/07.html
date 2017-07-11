@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="stylesheet" href="css/common.css" />
+        <link rel="stylesheet" href="css/05.css" />
+        <script src="js/jquery.2.1.min.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<link rel="stylesheet" href="js/weui/lib/weui.min.css" />
+		<title>认证团队</title>
+	</head>
+	<body>
+		<p class="Welcome">欢迎您,<b>新用户</b></p>
+		<div id="IsGroup">
+			<div id="IsGroupS">
+				<p>团队认证条件：</p>
+				<p><i>1、团队成员人数达到50人以上</i> <span>未达成</span></p>
+				<p><i>2、成功组织十次以上户外活动</i> <span>未达成</span></p>
+				<p><i>3、团队团长上传身份证正反面</i> <span>未达成</span></p>
+				<div class="UploadPhotos">
+					<span>
+						<img src="img/run01/05_03.png" onclick="chooseImage()"/>
+						<img class="imgOK" src="img/run01/07_06.png"/>
+					</span>
+					<span>
+						<img src="img/run01/05_03.png" onclick="chooseImage()"/>
+						<img class="imgOK" src="img/run01/07_06.png"/>
+					</span>
+				</div>
+			</div>
+			<div id="IsGroupCheck">
+				<button>点击查看认证团队完整福利</button>
+				<button onclick="AuthenticationRunGroup()">认证团队</button>
+				<button onclick="history.go(-1)">返回</button>
+			</div>
+		</div>
+		<div class="modal PostPhoto active">
+		  	<div class="modal-dialog">
+		  		<div style="height:65%;"></div>
+		  		<div class="modal-content">
+		  			<div>
+		  				<p>拍照</p>
+		  				<p>我的相册</p>
+		  			</div>
+		  			<p onclick="(function(){$('.modal:eq(0)').addClass('active');})()">取消</p>
+		  		</div>	
+			</div>
+		</div>
+		<div class="modal active">
+		  	<div class="modal-dialog">
+		  		<div class="modal-content">
+		  			<div class="GroupSucc">
+		  				<div>
+			  				<p style="border:none">团队资料已上传</p>
+			  				<p>请团长耐心等待认证</p>
+			  			</div>
+			  			<p><a href="34.html">联知道了</a></p>
+		  			</div>
+		  		</div>	
+			</div>
+		</div>
+		<script>
+		function AuthenticationRunGroup(){
+			var date={idCardImg:"gvbergbjh.gif"};
+			$.ajax({
+					url:'http://xb.guegg.com/group/certificationGroups',
+					//url:"http://192.168.0.206:8080/group/certificationGroups",
+					type:'get',
+					data:{
+						idCardFront:"aaa",
+						idCardBack:"333",
+						groupId:"2"
+					},
+					success:function(data){
+						console.log(data);
+						if(data.result=="1"){
+							$('.modal:eq(1)').removeClass('active');//创建成功
+							//window.location.href="42.html?IsProve=1"
+						}else{
+							$('.modal:eq(2)').removeClass('active');//信息错误
+						}
+					},
+					error:function(){
+						alert("网络出错！");
+					}
+				});
+		}
+		//通过ready接口处理成功验证
+		wx.ready(function(){
+			// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后
+		});
+		
+		wx.error(function(res){
+		    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+
+		});
+		
+		$(function(){
+		
+			$.ajax({
+				url:"/generator_system/weixin/sign",
+				type:"post",
+				data:"url="+location.href.split('#')[0],
+				dataType:"json",
+				success:function(data){
+					//通过config接口注入权限验证配置
+					wx.config({
+					    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+					    appId: 'wxbf7f2cd4ec56ab25', // 必填，公众号的唯一标识
+					    timestamp: data.timestamp, // 必填，生成签名的时间戳
+					    nonceStr: data.nonceStr, // 必填，生成签名的随机串
+					    signature: data.signature,// 必填，签名
+					    jsApiList : [ 'closeWindow','chooseImage','uploadImage','downloadImage'] // 必填，需要使用的JS接口列表
+					});
+				}
+			});
+		});
+		
+		var chooseImage = function() {
+			wx.chooseImage({
+
+			    count: 1, // 默认9
+			
+			    sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+			
+			    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+			
+			    success: function (res) {
+			
+			        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+			        
+			        var localId = localIds[0];
+			        $("#beijin").html("<li class='weui_uploader_file' style='background-image:url("+localId+")'></li>");
+			        
+			        //上传图片
+			        wx.uploadImage({
+					    localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+					    isShowProgressTips: 1, // 默认为1，显示进度提示
+					    success: function (res) {
+					    	
+					        var serverId = res.serverId; // 返回图片的服务器端ID
+					        $("#bgServerId").val(serverId);
+					    }
+					});
+			       
+			    }
+		
+			});
+		}
+
+		</script>
+	</body>
+</html>

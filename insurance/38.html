@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+        <link rel="stylesheet" href="css/common.css" />
+        <script src="js/jquery-2.2.4.js"></script>
+		 <link rel="stylesheet" type="text/css" href="js/weui/lib/weui.css"/>
+        <script src="js/weui/js/jquery-weui.js"></script>
+        <link rel="stylesheet" href="css/38.css" />
+		<title>团队搜索</title>
+	</head>
+	<body>
+		<div class="weui_search_bar" id="search_bar">
+		  	<form class="weui_search_outer">
+		    <div class="weui_search_inner">
+			    <i class="weui_icon_search"></i>
+			    <input type="search" class="weui_search_input" id="search_input" placeholder="搜索" required/>
+			    <a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
+		  	</div>
+		  	<label for="search_input" class="weui_search_text" id="search_text">
+			  	<i class="weui_icon_search"></i>
+			   	<span>搜索</span>
+		   	</label>
+		 	</form>
+		  	<!--a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a-->
+		</div>
+		<p class="result">搜索的结果：</p>
+		<ul id="MyPaotuanList" class="active PP">
+			<li>
+				<div class="myrungrouplist">
+						<p><img src="img/run01/01_02.png" alt="" /></p>
+					<div>
+						<p>小巴团队</p>
+						<p>所在地：<span>杭州</span>   &nbsp;&nbsp;成员：<span>99</span></p>
+						</div>
+					<a>查看详细</a>
+				</div>
+			</li>
+			<li>
+				<div class="myrungrouplist">
+					<p><img src="img/run01/01_02.png" alt="" /></p>
+					<div>
+						<p>小巴团队</p>
+						<p>所在地：<span>杭州</span>   &nbsp;&nbsp;成员：<span>99</span></p>
+					</div>
+					<a>查看详细</a>
+				</div>
+			</li>			
+		</ul>
+		<div id="resultNo">
+			<img src="img/run33/41_02.png" alt="" />
+			<img src="img/run33/41_03.png" alt="" />
+			<ul id="MyPaotuanList" class="No">
+				<li>
+					<img src="img/run33/36_04.png"/>
+					<div class="myrungrouplist">
+						<p><img src="img/run01/01_02.png" alt="" /></p>
+						<div>
+							<p>小巴团队</p>
+							<p>所在地：<span>杭州</span>   &nbsp;&nbsp;成员：<span>99</span></p>
+						</div>
+					<a></a>
+					</div>
+				</li>
+				<li>
+					<img src="img/run33/36_04.png"/>
+					<div class="myrungrouplist">
+						<p><img src="img/run01/01_02.png" alt="" /></p>
+						<div>
+							<p>小巴团队</p>
+							<p>所在地：<span>杭州</span>   &nbsp;&nbsp;成员：<span>99</span></p>
+						</div>
+					<a href="40.html?groupId=1"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		$("#search_input").keyup(function(){
+			var keyWords=$(this).val();
+			console.log(keyWords);
+			$.ajax({
+				type:"get",
+				url:"http://www.izerosoft.com.cn/group/searchGroup",
+				data:{
+					groupName:keyWords
+				},
+				async:true,
+				success:function(obj){
+					$(".PP").html("");
+					if(obj.result==1){
+						$("#v").hide();
+						$(".PP").show();
+						for(var i=0,groupList="";i<obj.groupList.length;i++){
+							groupList+="<li><div class='myrungrouplist'><p><img src='"
+								+obj.groupList[i].groupLogo+
+								"' alt='' /></p><div><p>"
+								+obj.groupList[i].groupGroupname+
+								"</p><p>所在地：<span>"
+								+obj.groupList[i].groupCity+
+								"</span>   &nbsp;&nbsp;成员：<span>"
+								+obj.groupNum[i]+
+								"</span></p></div><a href='40.html?groupId="
+								+obj.groupList[i].groupId+
+								"'>查看详情</a></div></li>";
+						}
+						$(".PP").html(groupList);
+					}else{
+						$(".PP").hide();
+						$("#resultNo").show();
+					}
+					
+				}
+			});
+		});
+		/*版本一没有推荐团队*/
+		$("#resultNo>img:eq(1)").show();
+		$(".No").show;
+	</script>
+</html>

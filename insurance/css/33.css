@@ -1,0 +1,353 @@
+﻿body {
+	background: url(../img/run33/030_02.png) fixed;
+	background-size: 100% 100%;
+	overflow: hidden;
+}
+
+#MemberInfor {
+	height: 30%;
+	width: 100%;
+}
+
+#MemberInfor li {
+	display: inline-block;
+	text-align: center;
+	height: 100%;
+	vertical-align: bottom;
+}
+
+#MemberInfor li:first-child {
+	width: 38%;
+}
+
+#MemberInforId,
+#MemberInforId>span {
+	font-size: 3vw;
+	color: #393938;
+	font-style: italic;
+}
+
+#MemberInforId {
+	height: 25%;
+	padding-top: 12%;
+}
+
+#MemberInforPhoto {
+	height: 62%;
+	margin: 0 13% 10% 13%;
+	background: url(../img/run33/012_03.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+#MemberInforPhoto img {
+	width: 85%;
+	margin-top: 15%;
+	height: 82%;
+	border-radius: 50%;
+	border: 3px solid #353535;
+}
+
+#MemberInfor li:nth-child(2) {
+	width: 35%;
+}
+
+#MemberLevel {
+	margin-top: 30%;
+	height: 15%;
+	overflow: hidden;
+	position: relative;
+}
+
+#MemberLevel img {
+	height: 85%;
+	position: absolute;
+	left: 0;
+}
+
+#MemberName {
+	margin-top: 15%;
+	height: 50%;
+}
+
+#MemberName p {
+	color: #393938;
+	font-size: 4vw;
+	height: 50%;
+	padding-left: 25%;
+	width: 200%;
+	text-align: left;
+}
+
+#MemberInfor {
+	position: relative;
+}
+
+#MemberInfor li:nth-child(3) {
+	width: 50px;
+	height: 100%;
+	background: url(../img/run33/014_03.png) no-repeat;
+	background-size: 100%;
+	position: absolute;
+	left: 83%;
+	top: 35%;
+}
+
+#MemberGrade {
+	display: inline-block;
+	font-size: 10px;
+	padding-top: 26px;
+	width: 75%;
+	text-align: left;
+	padding-left: 19px;
+}
+
+#HomeLei {
+	margin-top: 1%;
+	height: 40%;
+	width: 100%;
+}
+
+#ShopStore li {
+	height: 50%
+}
+
+#ShopStore li a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+#HomeLei li {
+	height: 25%;
+}
+
+#HomeLei li:hover {
+	background: #000000;
+	opacity: 0.2;
+}
+
+#ShopStore {
+	height: 14%;
+}
+
+#ShopStore li:hover {
+	background: #000000;
+	opacity: 0.05;
+}
+
+#SetUp {
+	display: inline-block;
+	width: 100%;
+	height: 7%;
+}
+
+#SetUp:hover {
+	background: #000000;
+	opacity: 0.05;
+}
+
+#SignIn {
+	display: inline-block;
+	width: 17%;
+	position: fixed;
+	top: 48%;
+	left: 82.9%;
+	background: url('../img/run33/015_03.png') no-repeat;
+	background-size: 100% 100%;
+	height: 35px;
+	border: none;
+	border-radius: 3px;
+	outline: none
+}
+
+#GetInfor {
+	display: inline-block;
+	width: 17%;
+	position: fixed;
+	top: 20%;
+	left: 82.9%;
+	background: linear-gradient(to bottom, #FE895E 0%, #F25F6E 100%);
+	background-size: 100% 100%;
+	height: 35px;
+	border: none;
+	border-radius: 3px;
+	color: #D43847;
+	font-family: 胡晓波男人帮简体;
+	font-size: 4.5vw;
+}
+
+#HomeLei li a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+.modal {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+	margin-top: 35%;
+	height: 30%;
+	width: 90%;
+	background: #FFFEFF;
+	overflow: hidden;
+	border-radius: 5px;
+	position: absolute;
+	left: 5%;
+	min-height: 150px;
+}
+
+
+/*消息*/
+
+.modal-dialog-infor {
+	margin-top: 30%;
+	height: auto;
+	max-height: 330px;
+	min-height: 100px;
+}
+
+.inforText {
+	position: relative;
+	padding: 3%;
+	height: 100%;
+	width: 100%;
+	min-height: 100px;
+}
+
+.inforText li {
+	padding: 5px;
+}
+
+.inforText li span {
+	color: #686868;
+	vertical-align: super;
+	margin-left: 10px;
+	font-size: 13px;
+}
+
+.inforText li p {
+	color: #383838
+}
+
+.inforText li p:nth-child(3) {
+	color: #989898;
+	font-size: 10px;
+	text-align: right;
+}
+
+.inforText li p a {
+	height: 20px;
+	float: right;
+}
+
+.inforText li p a img {
+	margin-top: 5px;
+	height: 20px;
+	width: 20px;
+}
+
+.inforText li p i {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #262C2D;
+	border-radius: 15px;
+	overflow: hidden;
+}
+
+.inforText li p i img {
+	width: 100%;
+	height: 100%
+}
+
+.inforText li p:nth-child(1) {
+	position: relative;
+}
+
+.inforText li p:nth-child(1) b {
+	position: absolute;
+	top: 19px;
+	left: 45px;
+}
+
+.inforText li p:nth-child(1) b img {
+	width: 50%;
+	height: 50%;
+}
+
+.closeInfor {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	opacity: 0.9;
+	width: 50px;
+	height: 50px;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.closeInfor img {
+	width: 100%;
+	height: 100%;
+}
+
+.signadd {
+	position: relative;
+	font-weight: bold;
+	left: 0px;
+	color: #D13444;
+	font-size: 18px;
+	opacity: 0;
+	animation: signmove 1s linear;
+	-moz-animation: signmove 1s linear;
+	-webkit-animation: signmove 1s linear;
+}
+
+@keyframes signmove {
+	0% {
+		display: block;
+		opacity: 0;
+		top: -20px;
+	}
+	50% {
+		opacity: 0.8;
+		top: -35px;
+	}
+	90% {
+		opacity: 1;
+		top: -40px;
+	}
+	100% {
+		opacity: 0;
+		top: -45px;
+		display: none;
+	}
+}
+
+@-webkit-keyframes signmove {
+	0% {
+		display: block;
+		opacity: 0;
+		top: -20px;
+	}
+	50% {
+		opacity: 0.8;
+		top: -35px;
+	}
+	90% {
+		opacity: 1;
+		top: -40px;
+	}
+	100% {
+		opacity: 0;
+		top: -45px;
+		display: none;
+	}
+}

@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">       
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+        <link rel="stylesheet" href="css/common.css" />
+        <link rel="stylesheet" href="css/42.css" />
+        <script src="js/jquery-2.2.4.js"></script>
+        <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<title>团队管理</title>
+	</head>
+	<body>
+		<div id="details" class="" >
+				<h1></h1>
+				<p class="nolone"><img src="img/images/039_01.png" alt="" /></p>
+				<ul>
+					<li style="height: 66px;" >
+						<div class="logo" style="margin-right: 0px;">
+							<img style="width: 46px;height:46px;margin: 0;" src="paotuan/img/p14.png" alt="" />
+						</div>
+						<p class="level">
+							<img src="img/images/039_03.png" alt="" />
+							<span></span>
+						</p>
+						<button class="amend" onclick="chooseImage()" style="margin-top: 18px;"></button>
+					</li>
+					<li>
+						<img src="img/images/043_05.png" alt="" />
+						<span></span>
+					</li>
+					<li>
+						<img src="img/images/039_09.png"/>
+						<span></span>
+					</li>
+					<li style="height:auto;word-wrap: break-word;padding: 0 15px;">
+						<img style="margin: 14px 20px 14px 0px;" src="img/images/039_12.png" alt="" />
+						<span></span>
+						<a class="amend" style="margin-right: 0;"></a>
+					</li>
+					<li>
+						<img src="img/images/043_13.png" alt="" />
+						<span></span>
+						<a class="amend"></a>
+					</li>
+				</ul>
+				<p style="display:none">退出团队</a></p>				
+		</div>
+	</body>
+	<script>
+		/*借口详情*/
+		var groupId= window.location.href.split(/groupId=/)[1].split(/&/)[0];
+              
+		$.ajax({
+			type:"get",
+			url:"http://www.izerosoft.com.cn/group/groupDetail",
+			data:{
+				groupId:groupId
+			},
+			async:true,
+			success:function(obj){
+				console.log(obj);
+				if(obj.result==1){
+					$(".logo img").attr("src","");
+					$(".logo img").attr("src",obj.myGroup.groupLogo);
+					$("#details h1").html(obj.myGroup.groupGroupname);
+					$('.logo img').attr("src","");
+					$('.logo img').attr("src",obj.myGroup.groupLogo);
+					$("#details ul li:eq(1) span").html(obj.myGroup.groupApplicantsname);
+					$("#details ul li:eq(2) span").html(obj.myGroup.groupProvince+"省"+obj.myGroup.groupCity);
+					$("#details ul li:eq(3) span").html(obj.myGroup.groupIntroduce);
+					$("#details ul li:eq(4) span").html(obj.groupNum+"人");
+					$(".amend:eq(1)").attr("href","44.html?groupId="+obj.myGroup.groupId);
+					$(".amend:eq(2)").attr("href","46.html?groupId="+obj.myGroup.groupId);
+				}else if(obj.result==0){
+					alert("没有团队信息");
+				}
+			},
+			error:function(){
+				alert("网络错误");
+			}
+		});
+			//通过ready接口处理成功验证
+			wx.ready(function(){
+				// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后
+			});
+			
+			wx.error(function(res){
+			    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+	
+			});
+			$(function(){
+				$.ajax({
+					type:"get",
+					url:"http://www.izerosoft.com.cn/code/getAccessToken",
+					async:true,
+					success:function(res){
+						accessToken=res.accessToken;
+						$.ajax({
+			    			type:"post",
+			    			url:"http://www.izerosoft.com.cn/code/sign",
+							dataType:"json",
+							data:{
+								url:window.location.href.split('#')[0],
+								jsapi_ticket:res.ticket
+							},
+				    		success:function(obj){
+							console.log(obj);
+					    		wx.config({
+								    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+								    appId: obj.hashMap.appId, // 必填，公众号的唯一标识
+								    timestamp: obj.hashMap.timestamp,// 必填，生成签名的时间戳
+								    nonceStr: obj.hashMap.nonceStr, // 必填，生成签名的随机串
+								    signature: obj.hashMap.signature,// 必填，签名，见附录1
+								    jsApiList: [ 'closeWindow','chooseImage','uploadImage','downloadImage']  // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+								});
+					    	}
+				    	});
+					}
+				});
+				
+			});
+			var accessToken;
+			var chooseImage = function() {
+				wx.chooseImage({
+	
+				    count: 1, // 默认9
+				
+				    sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+				
+				    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+				
+				    success: function (res) {
+	
+				        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+				        
+				        var localId = localIds[0];
+
+				        //上传图片
+				        wx.uploadImage({
+						    localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+						    isShowProgressTips: 1, // 默认为1，显示进度提示
+						    success: function (res) {
+								$.ajax({
+									type:"get",
+									url:"http://www.izerosoft.com.cn/group/updateGroup",
+									data:{
+										groupId:groupId,
+										mediaId:res.serverId,
+										accessToken:accessToken
+									},
+									async:true,
+									success:function(){
+										$(".logo img").attr("src",localId);
+									},
+									error:function(){
+										alert("修改失败，稍后再试");
+									}
+								});		
+							
+						    }
+						});
+				    }
+				});
+			}
+	</script>
+</html>

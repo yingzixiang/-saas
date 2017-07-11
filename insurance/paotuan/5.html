@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title>打卡</title>
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="css/5.css" />
+		<script type="text/javascript" src="../js/jquery-2.2.4.js"></script>
+	</head>
+
+	<body>
+		<div id="bg">
+			<p id="HeadPortrait"><img src="img/p14.png" /></p>
+			<p id="name">小小吧</p>
+			<div id="div_bg">
+				<p id="p1">2016-09-10</p>
+				<p id="p2">55</p>
+				<p id="p3">KM</p>
+				<p id="p4">来自<span>手动打卡</span></p>
+			</div>
+			<div id="div3">
+				<input id="sign" type="button" value="打卡" onclick="sign()" />
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var m=window.location.href.split(/m=/)[1].split(/&/)[0];
+		document.getElementById("p2").innerHTML = m;
+		var sign=function(){
+			var memberId=localStorage.getItem("memberId");
+			$.ajax({
+				type:"get",
+				url:"http://xb.guegg.com/runmile/instantMile",
+				data:{
+					memberId:memberId,
+					instantMile:m
+				},
+				async:true,
+				success:function(res){
+					console.log("即时添加跑量");
+					console.log(res);
+					window.location.href="4.html"
+				}
+			});
+		}
+		$(function(){
+			var memberId=localStorage.getItem("memberId");
+			var openid=localStorage.getItem("openid");
+			var date=new Date();
+			$("#p1").html(date.toLocaleDateString().replace(/\//g,"-"));
+			$.ajax({
+				type:"get",
+				url:"http://xb.guegg.com/member/detail",
+				data:{
+					openid:openid,
+					memberId:memberId
+				},
+				async:true,
+				success:function(obj){
+					
+					console.log(obj);
+					$("#HeadPortrait img").attr("src",obj.img);
+					$("#name").html(obj.nickname);
+				}
+			});
+		});
+	</script>
+</html>

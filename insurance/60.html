@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/34.css" />
+		<script src="js/jquery-2.2.4.js"></script>
+		<script src="js/weui/js/jquery-weui.js"></script>
+		<title>我的活动</title>
+		<style>
+			
+			.btn {
+				margin-top: 50px;
+			}
+			
+			#MyPaotuanList {
+				padding: 3%;
+			}
+			
+			#MyPaotuanList li {
+				background: linear-gradient(to bottom, #f8f8f8 0%, #e8e8e8 100%);
+				margin-bottom: 10px;
+				border-radius: 3px;
+				height: 60px;
+			}
+			
+			#MyPaotuanList li>p {
+				
+				width: 100%;
+				height: 3px;
+				border-radius: 2px;
+			}
+			
+			.myrungrouplist>p {
+				height: 40px;
+				width: 11%;
+				margin: 10px 2%;
+			}
+			
+			.myrungrouplist div p:first-child {
+				color: #383838;
+				font-size: 3.2vw;
+				text-align: center;
+			}
+			
+			.myrungrouplist div p:last-child {
+				line-height: 29px;
+				font-size: 2.2vw;
+				color: #686868;
+				text-align: center;
+				overflow: hidden;
+			}
+			
+			.myrungrouplist div {
+				width: 32%;
+				line-height: 29px;
+			}
+			
+			.myrungrouplist div> p> span {
+				font-size: 2.5vw;
+			}
+			
+			.p1 {
+				margin-right: 0 !important;
+				margin-left: 0 !important;
+				font-size: 2.8vw;
+				width: 30% !important;
+				line-height: 40px;
+				text-align: center;
+			}
+			
+			.p1 span {
+				font-size: 3.5vw;
+				color: #FF0048;
+			}
+			
+			#MyPaotuanList a,
+			#MyPaotuanList input {
+				float: right;
+				font-style: italic;
+				width: 18%;
+				border: 1px solid #c8c8c8;
+				padding: 5px 0;
+				margin: 0;
+				margin-top: 4vw;
+				border-radius: 4px;
+				background: linear-gradient(to bottom,#f8f8f8 0%, #e8e8e8 100%);
+				margin-right: 3vw;
+				font-weight: bold;
+				font-size: 13px;
+				text-align: center;
+				text-decoration: none;
+			}
+			
+			#MyPaotuanList button a {
+				text-decoration: none;
+				color: #f8f8f8;
+				
+			}
+			
+			#mypart img {
+				height: 100%
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="Event">
+			<p id="ChuangjianTitle" style="height:4%"><img style="width:35%;padding: 10px;" src="img/run60/59_07.png" alt="" /></p>
+			<div id="MyPaotuanNo" class="active">
+				<img src="img/run60/58_02.png" alt="" />
+				<a class="btn" href="21.html">查看活动</a>
+			</div>
+			<ul id="MyPaotuanList" class="muplist">
+				<!--li>
+					<p></p>
+					<div class="myrungrouplist">
+						<p><img src="img/run01/01_02.png" alt="" /></p>
+						<div>
+							<p>有爱就跑七夕活动</p>
+							<p><span>2016.08.08</span>&nbsp;预定</p>
+						</div>
+						<p class="p1">由<span style="color:#FF0048;">小巴跑团</span>发布</p>
+						<button>已支付</button>
+					</div>
+				</li-->
+				<!--li>
+					<p></p>
+					<div class="myrungrouplist">
+						<p><img src="img/run01/01_02.png" alt="" /></p>
+						<div>
+							<p>有爱就跑七夕活动</p>
+							<p><span>2016.08.08</span>&nbsp;预定</p>
+						</div>
+						<p class="p1">由<span style="color:#FF0048;">小巴跑团</span>发布</p>
+						<button>去支付</button>
+					</div>
+				</li-->
+			</ul>
+		</div>
+	</body>
+	<script>
+		//我报名的活动
+		var memberId = window.sessionStorage.getItem("memberId");
+		$.ajax({
+			url: "http://www.izerosoft.com.cn/activity/myActivityList",
+			data: {
+				memberId: memberId,
+				status: "0"
+			},
+			type: "get",
+			success: function(obj) {
+				console.log(obj);
+				if(obj.result == 1) {
+					$("#MyPaotuanList").html("");
+					for(var i = obj.myActivityList.length - 1,Amtfee="", MyPaotuanList = "", newTime = ""; i >= 0; i--) {
+						newTime = new Date(obj.myActivityList[i].startTime);
+						newTime = newTime.getFullYear() + "." +
+							(newTime.getMonth() + 1) + "." +
+							newTime.getDate();
+							Amtfee=parseFloat(obj.myActivityList[i].activityCost)*100;
+						$("#MyPaotuanList").append(
+							"<li alt='" + obj.myActivityList[i].activityId + "'><p></p><div class='myrungrouplist'><p><img src='" +
+							obj.myActivityList[i].activityLogo.split(/,/)[0] +
+							"' alt='logo'/></p><div><p>" +
+							obj.myActivityList[i].activityName +
+							"</p><p><span>" +
+							newTime +
+							"</span>&nbsp;开始</p></div><p class='p1'>由<span style='color:#FF0048;'>" +
+							obj.myActivityList[i].activityOrganizers +
+							"</span>发布</p><a style='margin-right: 3vw;" +
+							(obj.status[i].enrollmentPaystatus == "0" ? "' href='http://codepay.zhongmakj.com/Tlopen/api?*http://www.izerosoft.com.cn/yzgpay/pay?"+
+	"subject=Pay&orderAmt=" + Amtfee + "&discountAmt=" + Amtfee + "&transAmt=" + Amtfee + "&orderNo=" + sessionStorage.getItem("memberId") + "M" + obj.myActivityList[i].activityId					
+							+"'>去支付" : "'>已支付") +
+							"</a></div></li>"
+						);
+					}
+					$(".muplist a").click(function() {
+						window.event.cancelBubble = true;
+					});
+					$(".muplist li").click(function() {
+						window.location.href = "activity_detail_1.html?activityId=" + $(this).attr('alt');
+					});
+
+				} else if(obj.result == 0) {
+					$("#MyPaotuanList").hide();
+					$("#MyPaotuanNo").show();
+					$(".btn").attr("href", "21.html?code=" + sessionStorage.getItem("code"));
+				}
+			},
+			eror: function() {
+				alert("网络出错！");
+			}
+		});
+		
+
+	</script>
+
+</html>

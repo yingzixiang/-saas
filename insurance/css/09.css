@@ -1,0 +1,89 @@
+*{
+	font-size: 15px;
+}
+body{
+	padding:5% 8%;
+	width:84%;
+	height: 90%;
+}
+.fee{
+	width:100%;
+}
+.fee p{
+	padding:10px 0;
+}
+.fee input{
+	background: linear-gradient(to top,#383838 0%,#282828 100%);
+	text-align: center;
+}
+.fee input{
+	
+	border: 1px solid #000;
+	padding:5px 10px;
+	border-radius:3px ;
+	text-align: center;
+}
+
+.btn{
+	display: inline-block;
+	background:linear-gradient(to bottom,#FD885E 0%,#F25F6E 100%);
+	line-height:40px;
+	color:#9B1339;
+	width:84%;
+	border:1px solid #EC5464;
+	border-radius: 5px;
+	margin-top: 90%;
+	text-align: center;
+	text-decoration: none;
+}
+.btn{
+	position: fixed;
+	bottom: 8%;
+}
+#insuranceChoose{
+	background: linear-gradient(to bottom,#383838 0%,#282828 100%);
+	border: 1px solid #000;
+	
+	border-radius: 3px;
+	padding:5px;
+	text-align: center;
+}
+.fee:first-child p:last-child{
+	background: linear-gradient(to top,#383838 0%,#282828 100%);
+	padding:0px;
+	margin: 0px;
+	
+}
+#insuranceChoose p span{
+	color:#626262;
+	vertical-align: middle;
+}
+#insuranceChoose p{
+	color:#626262;
+	padding:5px;
+}
+#insuranceChoose p span{
+	color:#626262;
+}
+.bg{
+	background: url(../img/run07/10_07.png) no-repeat 0px -3px;
+	background-size: 100% ;
+}
+.bg1{
+	background: url(../img/run07/09_07.png) no-repeat 5px;
+	background-size: auto 40px;
+}
+.fee input{
+	background: url(../img/run07/09_03.png) no-repeat 5px;
+	background-size: auto 40px;
+	padding:6px;
+	width: 100%;
+}
+#insuranceChoose p b{
+	display: inline-block;
+	width: 30px;
+	float:right;
+}
+ b img{
+	width:20px;
+}

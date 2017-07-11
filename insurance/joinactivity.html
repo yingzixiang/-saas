@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="js/weui/css/jquery-weui.css" />
+		<link rel="stylesheet" href="js/weui/lib/weui.min.css" />
+		<script src="js/jquery.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/weui/js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
+		<title>活动报名</title>
+		<style type="text/css">
+			body{
+				background: #fff;
+			}
+			
+			.weui_label img {
+				width: 25px;
+				height: 25px;
+			}
+			
+			.weui_cell_primary img {
+				width: 20px;
+				height: 20px;
+				margin: 0 5px;
+				vertical-align: text-bottom;
+			}
+			
+			.weui_label {
+				width: 50px;
+			}
+			
+			#header {
+				text-align: center;
+			}
+			
+			#header img {
+				height: 1.5em;
+			}
+			
+			.weui_input {
+				color: #383838
+			}
+			
+			#addinfor {
+				color: red;
+				margin: 10px auto;
+				width: 15em;
+				font-size: 14px;
+			}
+			.weui_dialog {
+				top: 30%;
+				left: 7%
+			}
+			.weui_cells{
+				margin-top: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="header"><img src="img/images/register_01.png" alt="" /></div>
+		<div class="weui_cells">
+			<div class="weui_cell">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_03.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actName" class="weui_input" type="text" placeholder="姓名">
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_06.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input class="" type="radio" name="sex" value="1" onclick="check_sex(this)" />&nbsp;男&nbsp;&nbsp;&nbsp;
+					<input class="" type="radio" name="sex" value="2" onclick="check_sex(this)" />&nbsp;女
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_16.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actAge" class="weui_input" type="tel" placeholder="年龄">
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_19.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actNumber" class="weui_input" type="text" placeholder="身份证号码">
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_21.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actMobile" class="weui_input" type="tel" placeholder="手机号码">
+				</div>
+			</div>
+			<div class="weui_cell" style="display: none;">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_23.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actContacts" class="weui_input" type="tel" value="15888888888">
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_28.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actAdress" class="weui_input" type="text" placeholder="现住地址">
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_30.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actOAB" class="weui_input" type="text" placeholder="血型">
+				</div>
+			</div>
+			<div class="weui_cell" style="display: none;">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_32.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actSize" class="weui_input" type="text" value="L">
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_34.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actPmh" class="weui_input" type="text" placeholder="既往病史，无可不填">
+				</div>
+			</div>
+			<div class="weui_cell">
+				<div class="weui_cell_hd"><label class="weui_label"><img src="img/images/register_36.png" alt="" /></label></div>
+				<div class="weui_cell_bd weui_cell_primary">
+					<input id="actAdds" class="weui_input" type="text" placeholder="备注">
+				</div>
+			</div>
+		</div>
+		<div id="addinfor">
+			*是必填内容
+		</div>
+		<div style="height:5em"></div>
+		<a href="javascript:;" onclick="joinAct(memberSex)" class=" weui_btn weui_btn_primary">报名</a>
+	</body>
+	<script type="text/javascript">
+		var memberSex="";
+		function check_sex(obj) {
+			memberSex = obj.value;
+		}
+
+		function joinAct(memberSex) {
+			var memberName = $("#actName").val();
+			var memberIdNumber = $("#actNumber").val();
+			var memberMobile = $("#actMobile").val();
+			if(!/^[\u4e00-\u9fa5]{2,}$/.test(memberName)) {　
+				$.toptip('姓名格式错误', 'error');
+			} else if(!(/^\d{18}$/.test(memberIdNumber) || /^\d{17}x$/.test(memberIdNumber))) {
+				$.toptip('身份证格式错误', 'error');
+			} else if(!/^\d{11}$/.test(memberMobile)) {
+				$.toptip('联系方式错误', 'error');
+			}else{
+				$.ajax({
+				type: "get",
+				url: "http://www.izerosoft.com.cn/activity/activityRegistrationl",
+				data: {
+					memberName: memberName,
+					memberIdNumber: memberIdNumber,
+					memberMobile: memberMobile,
+					activityId: window.location.href.split(/activityId=/)[1].split(/&/)[0],
+					memberId: sessionStorage.getItem("memberId"),
+					cost: window.location.href.split(/cost=/)[1].split(/&/)[0],
+					memberSex: memberSex,
+					memberAge: $("#actAge").val(),
+					memberAdress: $("#actAdress").val(),
+					memberOAB: $("#actOAB").val(),
+					memberPMH: $("#actPmh").val(),
+					memberAdds: $("#actAdds").val(),
+					memberSize: $("#actSize").val(),
+					memberContacts: $("#actContacts").val()
+				},
+				async: true,
+				success: function(res) {
+					if(res.result == 1) {
+						$.alert("点击确定去支付","报名信息填写完成", function() {
+						  //点击确认后的回调函数
+						   var Amtfee = parseFloat(window.location.href.split(/cost=/)[1].split(/&/)[0]) * 100;
+							var orderNo = sessionStorage.getItem("memberId") + "M" + window.location.href.split(/activityId=/)[1].split(/&/)[0];
+							window.location.href = "http://codepay.zhongmakj.com/Tlopen/api?*http://www.izerosoft.com.cn/yzgpay/pay?subject=Pay&orderAmt=" + Amtfee + "&discountAmt=" + Amtfee + "&transAmt=" + Amtfee + "&orderNo=" + orderNo;
+						});
+					} else {
+						$.toast("重复加入", "cancel");
+					}
+				},
+				error: function() {
+					$.toast("网络出错", "cancel");
+				}
+			});
+			}
+			
+		}
+		
+	</script>
+
+</html>

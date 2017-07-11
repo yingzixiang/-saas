@@ -1,0 +1,242 @@
+﻿*{
+	color:#383838
+}
+.hover{
+	font-weight: bold;
+	border-bottom: 3px solid #FD885E;
+	color:#383838 !important;}
+#Event img{
+	width:100%;	
+}
+.btn{
+	display: inline-block;
+	text-align: center;
+	width: 90%;
+	margin-left:5%;
+	background:linear-gradient(to bottom,#FD885E 0%,#F25F6E 100%);
+	line-height:40px;
+	font-size: 15px;
+	color:#9B1339;
+	border:none;
+	border-radius: 3px;
+	text-decoration: none;
+}
+
+
+#Event{
+	height:90%;
+}
+#ChuangjianTitle{
+	height:5%;
+}
+#MyPaotuanList{
+	height:90%;
+}
+#MyPaotuanList li{
+	width:100%;
+	height:52px;
+	position: relative;
+	border-bottom: 1px solid #C8C8C8;
+	margin-bottom: 13px;
+	background:linear-gradient(to bottom,#f8f8f8 0%,#e8e8e8 100%) no-repeat;
+}
+.myrungrouplist{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top:0;
+	left:0;
+}
+.myrungrouplist:after{
+	content:"";
+	display: block;
+	clear: both;
+}
+.myrungrouplist>p{
+	width:36px;
+	float:left;
+	margin:8px 4%;
+	height:36px;
+	border-radius: 3px;
+	overflow: hidden;
+}
+.myrungrouplist>p>img{
+	width: 100%;
+	height: 100%;
+}
+.myrungrouplist div{
+	width:50%;
+	float:left;
+}
+.myrungrouplist div>p{
+	font-size: 12px;
+	line-height: 26px;
+	height:26px;
+	overflow: hidden;
+}
+.myrungrouplist div>p>span{
+	font-size: 3.0vw;
+	
+}
+.myrungrouplist>button{
+	width:70px;
+	height:32px;
+	margin-top:10px;
+	margin-left:calc(18% - 36px);
+	border-radius: 5px;
+	background: linear-gradient(to top, #f8f8f8 0%, #e8e8e8 100%) no-repeat;
+	font-style: italic;
+	background-size: 100% 100%;
+	outline: none;
+	font-size: 13px;
+	font-weight: bold;
+	color:#686868
+}
+.myrungrouplist>a:hover{
+	background: #000000;
+	opacity: 0.05;
+}
+#AboutRun{
+	height: 90%;
+	width: 100%;
+}
+
+.tuijianpaotun{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top:0;
+	left:0;
+}
+.tuijianpaotun:after{
+	content:"";
+	display: block;
+	clear: both;
+}
+.tuijianpaotun>p{
+	width:14%;
+	float:left;
+	margin:10px 4%;
+	height:calc(80% - 20px);
+	border-radius: 3px;
+	overflow: hidden;
+}
+.tuijianpaotun>p>img{
+	width: 100%;
+	height: 100%;
+}
+.tuijianpaotun div{
+	width:50%;
+	float:left;
+	height: 80%;
+}
+.tuijianpaotun div>p{
+	font-size: 3.0vw;
+	height: 10%;
+	margin-top: 7%;
+}
+.tuijianpaotun div>p>span{
+	font-size: 3.0vw;
+	
+}
+.tuijianpaotun>a{
+	width:24%;
+	margin-left:1%;
+	float:left;
+	height:45%;
+	margin-top:4.2%;
+	border-radius: 5px;
+	text-decoration: none;
+}
+.tuijianpaotun>a:hover{
+	background: #000000;
+	opacity: 0.05;
+}
+.RunGrouoList{
+	height: 70%;
+}
+.RunGrouoList li{
+	width:100%;
+	height:52px;
+	position: relative;
+	border-bottom: 1px solid #c8c8c8;
+	margin-bottom: 13px;
+	background:linear-gradient(to bottom,#f8f8f8 0%, #e8e8e8 100%) no-repeat;
+}
+.RunGrouoList li button{
+	width:70px;
+	height:32px;
+	margin-top:10px;
+	margin-left:calc(18% - 36px);
+	border-radius: 5px;
+	background: url(../img/images/041_03.png) no-repeat;
+	background-size: 100% 100%;
+	outline: none;
+}
+
+.RunGrouoList li img{
+	height: 100%;
+}
+
+#details{
+	height: 100%;
+	width: 100%;
+	background: linear-gradient(to top, #f8f8f8 0%, #e8e8e8 100%);
+	background-size: 100%;
+	position: fixed;
+	top:0;
+	left:0;
+	right: 0;
+	bottom: 0;
+}
+#details h1{
+    text-align: center;
+    font-size: 20px;
+    padding-top: 15px;
+    font-weight: bold;
+}
+.logo{
+	display: inline-block;
+	height:46px;
+	width:46px;
+	margin: 10px 20px 10px 15px;
+	box-shadow: 1px 1px 1px #989898;
+	border-radius:3px ;
+	overflow: hidden;
+}
+.nolone{
+	width: 100%;
+	text-align: center;
+}
+.nolone img{
+	width:150px;
+}
+#details ul li{
+	width: 100%;
+	height:50px;
+	line-height: 50px;
+	background:linear-gradient(to bottom,#f8f8f8 0%,#e8e8e8 100%) no-repeat;
+	margin-top: 13px;
+	border-bottom:1px solid #C8C8C8;
+}
+#details ul li img{
+	width: 66px;
+	height:22px;
+	margin: 14px 20px 14px 15px;
+	vertical-align: top;
+}
+.level{
+	display: inline-block;
+	width:calc(100% - 66px);
+	height:58px;
+	vertical-align: top;
+	margin-top:8px;
+}
+.level span{
+	display: inline-block;
+	width: 120px;
+	height: 22px;
+	background: url(../img/run33/011_03.png) no-repeat;
+	background-size: 218px 22px;
+}
+
